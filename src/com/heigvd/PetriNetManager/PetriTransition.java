@@ -17,4 +17,8 @@ public class PetriTransition {
     public PetriTransition(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        return this.getName();
+    }
 }

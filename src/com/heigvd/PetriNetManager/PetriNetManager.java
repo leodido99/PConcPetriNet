@@ -1,11 +1,15 @@
 package com.heigvd.PetriNetManager;
 
 import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.*;
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -22,6 +26,15 @@ public class PetriNetManager {
 
     /* The post-incidence matrix
      * Link between transitions and places */
+
+    public int[][] getPreIncidenceMatrix() {
+        return preIncidenceMatrix;
+    }
+
+    public int[][] getPostIncidenceMatrix() {
+        return postIncidenceMatrix;
+    }
+
     private int[][] postIncidenceMatrix;
 
     private Vector<PetriTransition> transitions;
@@ -41,9 +54,9 @@ public class PetriNetManager {
 
     public PetriNetManager() {
         places = new Vector<>();
+        transitions = new Vector<>();
         preIncidenceArcs = new Vector<>();
         postIncidenceArcs = new Vector<>();
-
     }
 
     private void printDebug(String message) {
@@ -52,32 +65,186 @@ public class PetriNetManager {
         }
     }
 
+    public void printMatrix(int[][] matrix) {
+        for(int j = 0; j < matrix.length; j++) {
+            for(int i = 0; i < matrix[j].length; i++) {
+                System.out.print(matrix[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printPreIncidenceMatrix() {
+        System.out.println("Pre-Incidence Matrix");
+        System.out.println("---------------------------");
+        this.printMatrix(this.preIncidenceMatrix);
+        System.out.println("---------------------------");
+    }
+
+    public void printPostIncidenceMatrix() {
+        System.out.println("Post-Incidence Matrix");
+        System.out.println("---------------------------");
+        this.printMatrix(this.postIncidenceMatrix);
+        System.out.println("---------------------------");
+    }
+
     @Nullable
     private PetriPlace findPlace(String placeName) {
         for(PetriPlace place : places) {
-            if (place.getName() == placeName) {
+            if (place.getName().equals(placeName)) {
                 return place;
             }
         }
-        return null;
+        throw new RuntimeException();
     }
 
     private int findPlaceIndex(String placeName) {
-        return places.indexOf(findPlace(placeName));
+        int idx = places.indexOf(findPlace(placeName));
+        //printDebug("findPlaceIndex: " + placeName + " = " + idx);
+        return idx;
     }
 
     @Nullable
     private PetriTransition findTransition(String transitionName) {
         for(PetriTransition transition : transitions) {
-            if (transition.getName() == transitionName) {
+            if (transition.getName().equals(transitionName)) {
                 return transition;
             }
         }
-        return null;
+        throw new RuntimeException();
     }
 
     private int findTransitionIndex(String transitionName) {
-        return places.indexOf(findPlace(transitionName));
+        int idx = transitions.indexOf(findTransition(transitionName));
+        //printDebug("findTransitionIndex: " + transitionName + " = " + idx);
+        return idx;
+    }
+
+    private boolean isValidLine(String line) {
+        boolean valid = false;
+        // Check line is not comment or empty
+        if (line != null) {
+            if (line.length() == 1 || (line.length() >= 2 && line.charAt(0) != '/' && line.charAt(1) != '/')) {
+                valid = true;
+            }
+        }
+        return valid;
+    }
+
+    private void setupPlaces(BufferedReader bufferedReader, int nbPlaces) throws IOException {
+        String line = null;
+        /* Read the Places */
+        int i = 0;
+        do {
+            line = bufferedReader.readLine();
+            if (this.isValidLine(line)) {
+                String[] placeProps = line.split(" ");
+                //printDebug("New Place: " + Arrays.toString(placeProps));
+                /* Create new place and add to vector */
+                places.add(new PetriPlace(placeProps[0], Integer.parseInt(placeProps[1]), Integer.parseInt(placeProps[2])));
+                i++;
+            }
+        } while(i < nbPlaces);
+        printDebug("Places: " + places);
+    }
+
+    private void setupTransitions(BufferedReader bufferedReader, int nbTransitions) throws IOException {
+        String line = null;
+        /* Read the Places */
+        int i = 0;
+        do {
+            line = bufferedReader.readLine();
+            if (this.isValidLine(line)) {
+                String[] transitionsNames = line.split(" ");
+                //printDebug("New Transitions: " + Arrays.toString(transitionsNames));
+                for(String transition : transitionsNames) {
+                    this.transitions.add(new PetriTransition(transition));
+                }
+                i++;
+            }
+        } while(i < 1);
+        printDebug("Transitions: " + transitions);
+    }
+
+    private void setIncidence(int[][] matrix, String placeName, String transitionName, int weight) {
+        // Transition = X, Place = Y
+        matrix[findPlaceIndex(placeName)][findTransitionIndex(transitionName)] = weight;
+    }
+
+    private void setupPreIncidenceArcs(BufferedReader bufferedReader, int nbArcs) throws IOException {
+        String line = null;
+        /* Read the Places */
+        int i = 0;
+        do {
+            line = bufferedReader.readLine();
+            if (this.isValidLine(line)) {
+                String[] props = line.split(" ");
+                //printDebug("New Pre-incidence arc: " + Arrays.toString(props));
+                setIncidence(preIncidenceMatrix, props[0], props[1], Integer.parseInt(props[2]));
+                i++;
+            }
+        } while(i < nbArcs);
+    }
+
+    private void setupPostIncidenceArcs(BufferedReader bufferedReader, int nbArcs) throws IOException {
+        String line = null;
+        /* Read the Places */
+        int i = 0;
+        do {
+            line = bufferedReader.readLine();
+            if (this.isValidLine(line)) {
+                String[] props = line.split(" ");
+                //printDebug("New Post-incidence arc: " + Arrays.toString(props));
+                setIncidence(postIncidenceMatrix, props[1], props[0], Integer.parseInt(props[2]));
+                i++;
+            }
+        } while(i < nbArcs);
+    }
+
+    public void setupPlaces(NodeList list) {
+        for (int temp = 0; temp < list.getLength(); temp++) {
+            Node nNode = list.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                System.out.println("Name : " + eElement.getAttribute("name"));
+                places.add(new PetriPlace(eElement.getAttribute("name"), Integer.parseInt(eElement.getAttribute("capacity")), Integer.parseInt(eElement.getAttribute("capacity"))));
+            }
+        }
+        printDebug("Places: " + places);
+    }
+
+    public void setupTransitions(NodeList list) {
+        for (int temp = 0; temp < list.getLength(); temp++) {
+            Node nNode = list.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                System.out.println("Name : " + eElement.getAttribute("name"));
+                this.transitions.add(new PetriTransition(eElement.getAttribute("name")));
+            }
+        }
+        printDebug("Places: " + places);
+    }
+
+    public void loadFromXMLFile(String fileName) {
+        printDebug("Loading Petri Net from " + fileName);
+        try {
+            File fXmlFile = new File(fileName);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            doc.getDocumentElement().normalize();
+
+            // Places
+            NodeList nList = doc.getElementsByTagName("place");
+            setupPlaces(nList);
+
+            // Transitions
+            NodeList nList = doc.getElementsByTagName("transition");
+            setupTransitions(nList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadFromTextFile(String fileName) {
@@ -96,73 +263,40 @@ public class PetriNetManager {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                printDebug("Line: " + line);
+                //printDebug("Line: " + line);
                 /* Ignore comments */
-                if (line.length() > 0 && line.charAt(0) != '/' && line.charAt(1) != '/') {
+                if (this.isValidLine(line)) {
                     switch(phase) {
                         case 0:
                             /* Places */
                             nbPlaces = Integer.parseInt(line);
                             printDebug("Number of Places = " + nbPlaces);
-                                /* Read the Places */
-                                for(int i = 0; i < nbPlaces; i++) {
-                                    line = bufferedReader.readLine();
-                                    if (line != null) {
-                                        String[] placeProps = line.split(" ");
-                                        printDebug("New Place: " + placeProps);
-                                        /* Create new place and add to vector */
-                                        places.add(new PetriPlace(placeProps[0], Integer.parseInt(placeProps[1]), Integer.parseInt(placeProps[2])));
-                                    }
-                                }
+                            this.setupPlaces(bufferedReader, nbPlaces);
                             phase++;
                             break;
                         case 1:
                             /* Transitions */
                             nbTransitions = Integer.parseInt(line);
                             printDebug("Number of Transitions = " + nbTransitions);
-                            /* Read the transitions */
-                            for(int i = 0; i < nbTransitions; i++) {
-                                line = bufferedReader.readLine();
-                                if (line != null) {
-                                    String[] transitionsNames = line.split(" ");
-                                    printDebug("New Transitions: " + transitions);
-                                    for(String transition : transitionsNames) {
-                                        this.transitions.add(new PetriTransition(transition));
-                                    }
-                                }
-                            }
+                            this.setupTransitions(bufferedReader, nbTransitions);
                             phase++;
                             break;
                         case 2:
                             /* pre-incidence arcs */
                             /* Create the matrix */
-                            preIncidenceMatrix = new int[nbTransitions][nbPlaces];
+                            preIncidenceMatrix = new int[nbPlaces][nbTransitions];
                             nbPreIncidenceArcs = Integer.parseInt(line);
                             printDebug("Number of Pre-incidence arcs = " + nbPreIncidenceArcs);
-                            for(int i = 0; i < nbPreIncidenceArcs; i++) {
-                                line = bufferedReader.readLine();
-                                if (line != null) {
-                                    String[] props = line.split(" ");
-                                    printDebug("New Pre-incidence arc: " + props);
-                                    preIncidenceMatrix[findPlaceIndex(props[1])][findTransitionIndex(props[0])] = Integer.parseInt(props[2]);
-                                }
-                            }
+                            this.setupPreIncidenceArcs(bufferedReader, nbPreIncidenceArcs);
                             phase++;
                             break;
                         case 3:
                             /* post-incidence arcs */
                             /* Create the matrix */
-                            postIncidenceMatrix = new int[nbTransitions][nbPlaces];
+                            postIncidenceMatrix = new int[nbPlaces][nbTransitions];
                             nbPostIncidenceArcs = Integer.parseInt(line);
                             printDebug("Number of Post-incidence arcs = " + nbPostIncidenceArcs);
-                            for(int i = 0; i < nbPostIncidenceArcs; i++) {
-                                line = bufferedReader.readLine();
-                                if (line != null) {
-                                    String[] props = line.split(" ");
-                                    printDebug("New Post-incidence arc: " + props);
-                                    postIncidenceMatrix[findPlaceIndex(props[1])][findTransitionIndex(props[0])] = Integer.parseInt(props[2]);
-                                }
-                            }
+                            this.setupPostIncidenceArcs(bufferedReader, nbPostIncidenceArcs);
                             phase++;
                             break;
                     }

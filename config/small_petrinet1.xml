@@ -1,0 +1,18 @@
+<paysage>
+	<places>
+		<place name="P1" capacity="1" ID="0" initToken="1">définition</place>
+		<place name="P2" capacity="1" ID="1" initToken="0">définition</place>
+		<place name="P3" capacity="1" ID="2" initToken="1">définition</place>
+		<place name="P4" capacity="1" ID="3" initToken="0">définition</place>
+		<place name="P5" capacity="1" ID="4" initToken="0">définition</place>
+	</places>
+	<transitions>
+		<transition name="…" ID="…">définition</transition>
+	</transitions>
+	<arcsPRE>
+		<arc IDREFplace="…" IDREFtransition="…" Poids="…" Nature="…"/>
+	</arcsPRE>
+	<arcsPOST>
+		<arc IDREFplace="…" IDREFtransition="…" Poids="…"/>
+	</arcsPOST>
+</paysage>

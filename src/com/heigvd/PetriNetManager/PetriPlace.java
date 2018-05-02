@@ -47,6 +47,8 @@ public class PetriPlace {
         this.current = nbInitialTokens;
     }
 
-
+    public String toString() {
+        return this.getName();
+    }
 
 }
