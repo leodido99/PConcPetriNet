@@ -165,10 +165,10 @@ public class PetriNetManager extends Thread {
      * @param placeIndex Place index
      * @return List with all connected arcs
      */
-    private Vector<PetriArc> getAllConnectedArcs(int placeIndex) {
+    private Vector<PetriArc> getAllConnectedArcs(int placeIndex, int transitionIndex) {
         Vector<PetriArc> connectedArcs = new Vector<>();
         for(PetriArc arc : preIncidenceArcs) {
-            if (arc.getFromPlace().equals(places.get(placeIndex).getName())) {
+            if (arc.getFromPlace().equals(places.get(placeIndex).getName()) && arc.getToTransition().equals(transitions.get(transitionIndex).getName())) {
                 connectedArcs.add(arc);
             }
         }
@@ -183,7 +183,7 @@ public class PetriNetManager extends Thread {
     private boolean isEnabled(int transitionIndex) {
         boolean enabled = false;
         for(int i = 0; i < nbPlaces; i++) {
-            Vector<PetriArc> connectedArcs = getAllConnectedArcs(i);
+            Vector<PetriArc> connectedArcs = getAllConnectedArcs(i, transitionIndex);
             for(PetriArc arc : connectedArcs) {
                 if (arc.getType() == PetriArcType.SIMPLE || arc.getType() == PetriArcType.TEST) {
                     /* If the arc is simple that means the marking must be greater or equal */
@@ -453,12 +453,21 @@ public class PetriNetManager extends Thread {
         matrix[findPlaceIndex(placeName)][findTransitionIndex(transitionName)] = weight;
     }
 
+    /**
+     * Create a new pre-incidence arc object and add it to the arc vector
+     * @param type Type of arc
+     * @param weight Weight of arc
+     * @param fromPlace Connected from place
+     * @param toTransition Connected to transition
+     */
     private void newPreIncidenceArc(int type, int weight, String fromPlace, String toTransition) {
         PetriArcType arcType = PetriArcType.SIMPLE;
         if (type == 1) {
             arcType = PetriArcType.TEST;
+            weight = 0;
         } else if (type == 2) {
             arcType = PetriArcType.INHIBIT;
+            weight = 0;
         }
         preIncidenceArcs.add(new PetriArc(arcType, weight, fromPlace, toTransition));
     }
