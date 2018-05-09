@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be381590-f6aa-4627-8f95-e8095cdfba7e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/roadCrossingRDP.cfg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManager.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManagerTest.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManagerTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriPlaceInterface.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriPlaceInterface.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/small_petrinet1.cfg" afterPath="$PROJECT_DIR$/config/small_petrinet1.cfg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Main.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java" afterPath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" afterPath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java" afterPath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlaceInterface.java" afterPath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlaceInterface.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +34,18 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roadCrossingRDP.cfg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -35,36 +54,14 @@
       <file leaf-file-name="PetriNetManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="473" column="36" lean-forward="false" selection-start-line="473" selection-start-column="36" selection-end-line="473" selection-end-column="36" />
+            <state relative-caret-position="225">
+              <caret line="159" column="81" lean-forward="true" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3700#3701#0" expanded="true" />
-                <element signature="e#3734#3735#0" expanded="true" />
-                <element signature="e#3770#3771#0" expanded="true" />
+                <element signature="e#3769#3770#0" expanded="true" />
                 <element signature="e#3803#3804#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="small_petrinet1.cfg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/small_petrinet1.cfg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PetriNetManagerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="25" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3839#3840#0" expanded="true" />
+                <element signature="e#3872#3873#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,11 +70,9 @@
       <file leaf-file-name="PetriTransition.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriTransition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding>
-                <element signature="e#490#491#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,10 +80,20 @@
       <file leaf-file-name="PetriArc.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+            <state relative-caret-position="180">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
-                <element signature="e#420#421#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="true" />
+                <element signature="e#343#344#0" expanded="true" />
+                <element signature="e#385#386#0" expanded="true" />
+                <element signature="e#424#425#0" expanded="true" />
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#515#516#0" expanded="true" />
+                <element signature="e#563#564#0" expanded="true" />
+                <element signature="e#833#834#0" expanded="true" />
+                <element signature="e#860#861#0" expanded="true" />
+                <element signature="e#906#907#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,11 +102,56 @@
       <file leaf-file-name="PetriPlace.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlace.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+            <state relative-caret-position="157">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PetriArcType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vehicle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="small_petrinet1.cfg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/small_petrinet1.cfg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PetriNetManagerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#406#407#0" expanded="true" />
+                <element signature="e#452#453#0" expanded="true" />
+                <element signature="e#487#488#0" expanded="true" />
+                <element signature="e#546#547#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,8 +163,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -135,11 +185,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlace.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlaceInterface.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriTransition.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlaceInterface.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/Main.java" />
+        <option value="$PROJECT_DIR$/config/roadCrossingRDP.cfg" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java" />
         <option value="$PROJECT_DIR$/config/small_petrinet1.cfg" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
@@ -200,6 +253,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="heigvd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PConcPetriNet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PConcPetriNet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="heigvd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RoadCrossing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,6 +362,9 @@
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.PetriNetManagerTest">
@@ -714,44 +792,44 @@
       <workItem from="1524067211475" duration="5830000" />
       <workItem from="1524670719034" duration="7741000" />
       <workItem from="1525281171814" duration="9099000" />
-      <workItem from="1525844017434" duration="4716000" />
+      <workItem from="1525844017434" duration="10578000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 40m 25s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 09h 20m 04s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 40m 35s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 09h 20m 16s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 40m 49s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 09h 20m 35s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 51m 26s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 44m 28s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 52m 24s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 50m 30s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 52m 45s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 50m 47s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 52m 52s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 51m 21s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 53m 00s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 51m 30s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 53m 14s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 53m 55s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PetriNetManagerTest - 2018.05.09 at 08h 54m 05s.xml">
+    <history-entry file="PetriNetManagerTest - 2018.05.09 at 10h 55m 04s.xml">
       <configuration name="PetriNetManagerTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27386000" />
+    <option name="totallyTimeSpent" value="33248000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
@@ -798,13 +876,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/heigvd/Main.java</url>
-          <line>9</line>
+          <url>file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java</url>
+          <line>92</line>
           <properties />
-          <option name="timeStamp" value="13" />
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -827,10 +905,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3700#3701#0" expanded="true" />
-            <element signature="e#3734#3735#0" expanded="true" />
-            <element signature="e#3770#3771#0" expanded="true" />
+            <element signature="e#3769#3770#0" expanded="true" />
             <element signature="e#3803#3804#0" expanded="true" />
+            <element signature="e#3839#3840#0" expanded="true" />
+            <element signature="e#3872#3873#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -841,6 +919,10 @@
           <caret line="48" column="85" lean-forward="false" selection-start-line="48" selection-start-column="85" selection-end-line="48" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -849,9 +931,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding>
-            <element signature="e#490#491#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +940,7 @@
         <state relative-caret-position="240">
           <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
           <folding>
-            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -870,8 +950,8 @@
         <state relative-caret-position="255">
           <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#503#504#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -898,10 +978,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3700#3701#0" expanded="true" />
-            <element signature="e#3734#3735#0" expanded="true" />
-            <element signature="e#3770#3771#0" expanded="true" />
+            <element signature="e#3769#3770#0" expanded="true" />
             <element signature="e#3803#3804#0" expanded="true" />
+            <element signature="e#3839#3840#0" expanded="true" />
+            <element signature="e#3872#3873#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -910,9 +990,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="e#490#491#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -921,7 +999,7 @@
         <state relative-caret-position="240">
           <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
           <folding>
-            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -939,8 +1017,8 @@
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#503#504#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -954,14 +1032,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcTypes.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -991,78 +1061,144 @@
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlaceInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlace.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="75">
+          <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1204#1205#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="e#420#421#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriTransition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/small_petrinet1.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        <state relative-caret-position="315">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/junit/lib/junit-jupiter-api-5.0.0-M3.jar!/org/junit/jupiter/api/AssertionUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="25" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        <state relative-caret-position="463">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#452#453#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#546#547#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriTransition.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#343#344#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#563#564#0" expanded="true" />
+            <element signature="e#833#834#0" expanded="true" />
+            <element signature="e#860#861#0" expanded="true" />
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#283#284#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="473" column="36" lean-forward="false" selection-start-line="473" selection-start-column="36" selection-end-line="473" selection-end-column="36" />
+        <state relative-caret-position="225">
+          <caret line="159" column="81" lean-forward="true" selection-start-line="159" selection-start-column="81" selection-end-line="159" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3700#3701#0" expanded="true" />
-            <element signature="e#3734#3735#0" expanded="true" />
-            <element signature="e#3770#3771#0" expanded="true" />
+            <element signature="e#3769#3770#0" expanded="true" />
             <element signature="e#3803#3804#0" expanded="true" />
+            <element signature="e#3839#3840#0" expanded="true" />
+            <element signature="e#3872#3873#0" expanded="true" />
           </folding>
         </state>
       </provider>

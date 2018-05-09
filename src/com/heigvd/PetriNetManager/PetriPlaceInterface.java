@@ -5,5 +5,5 @@ package com.heigvd.PetriNetManager;
  */
 public interface PetriPlaceInterface {
     /* Execute the action of the place */
-    void execute();
+    void execute(PetriPlace place);
 }

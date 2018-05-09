@@ -6,10 +6,30 @@ package com.heigvd.PetriNetManager;
 public class PetriArc {
     private PetriArcType type;
     private int weight;
+    private String fromPlace;
+    private String toTransition;
 
-    public PetriArc(PetriArcType type, int weight) {
+    public String getFromPlace() {
+        return fromPlace;
+    }
+
+    public void setFromPlace(String fromPlace) {
+        this.fromPlace = fromPlace;
+    }
+
+    public String getToTransition() {
+        return toTransition;
+    }
+
+    public void setToTransition(String toTransition) {
+        this.toTransition = toTransition;
+    }
+
+    public PetriArc(PetriArcType type, int weight, String fromPlace, String toTransition) {
         this.type = type;
         this.weight = weight;
+        this.fromPlace = fromPlace;
+        this.toTransition = toTransition;
     }
 
     public PetriArcType getType() {

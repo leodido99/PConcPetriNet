@@ -42,9 +42,6 @@ public class PetriNetManager extends Thread {
     private Vector<PetriTransition> transitions;
     private Vector<PetriPlace> places;
     private Vector<PetriArc> preIncidenceArcs;
-    private Vector<PetriArc> postIncidenceArcs;
-
-
 
     private int nbTransitions = -1;
     private int nbPlaces = -1;
@@ -67,7 +64,6 @@ public class PetriNetManager extends Thread {
         places = new Vector<>();
         transitions = new Vector<>();
         preIncidenceArcs = new Vector<>();
-        postIncidenceArcs = new Vector<>();
         enabledTransitions = new Vector<>();
         firedTransitions = new Vector<>();
     }
@@ -98,6 +94,15 @@ public class PetriNetManager extends Thread {
     }
 
     /**
+     * Sets the action to be executed for a certain place
+     * @param placeName The place name
+     * @param action The action to perform
+     */
+    public void setPlaceAction(String placeName, PetriPlaceInterface action) {
+        this.places.get(findPlaceIndex(placeName)).setAction(action);
+    }
+
+    /**
      * Waits the duration of a tick
      */
     private void waitTick() {
@@ -117,12 +122,6 @@ public class PetriNetManager extends Thread {
         executePhase1();
         executePhase2();
         executePhase3();
-        if (this.debug) {
-            for(int i : this.markingPost) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
     }
 
     /**
@@ -138,7 +137,7 @@ public class PetriNetManager extends Thread {
 
     private void executeActivity(int placeIndex) {
         if (places.get(placeIndex).getAction() != null) {
-            places.get(placeIndex).getAction().execute();
+            places.get(placeIndex).getAction().execute(places.get(placeIndex));
         }
     }
 
@@ -162,6 +161,21 @@ public class PetriNetManager extends Thread {
     }
 
     /**
+     * Returns a vector containing all the arcs connected to a given place
+     * @param placeIndex Place index
+     * @return List with all connected arcs
+     */
+    private Vector<PetriArc> getAllConnectedArcs(int placeIndex) {
+        Vector<PetriArc> connectedArcs = new Vector<>();
+        for(PetriArc arc : preIncidenceArcs) {
+            if (arc.getFromPlace().equals(places.get(placeIndex).getName())) {
+                connectedArcs.add(arc);
+            }
+        }
+        return connectedArcs;
+    }
+
+    /**
      * Returns if a transition at index is enabled (sensibilisée)
      * @param transitionIndex Index of the transition
      * @return true = enabled, false = not enabled
@@ -169,11 +183,22 @@ public class PetriNetManager extends Thread {
     private boolean isEnabled(int transitionIndex) {
         boolean enabled = false;
         for(int i = 0; i < nbPlaces; i++) {
-            if (preIncidenceMatrix[i][transitionIndex] > 0) {
-                if (markingPre[i] >= preIncidenceMatrix[i][transitionIndex]) {
-                    enabled = true;
-                } else {
-                    return false;
+            Vector<PetriArc> connectedArcs = getAllConnectedArcs(i);
+            for(PetriArc arc : connectedArcs) {
+                if (arc.getType() == PetriArcType.SIMPLE || arc.getType() == PetriArcType.TEST) {
+                    /* If the arc is simple that means the marking must be greater or equal */
+                    if (markingPre[i] >= preIncidenceMatrix[i][transitionIndex]) {
+                        enabled = true;
+                    } else {
+                        return false;
+                    }
+                } else if (arc.getType() == PetriArcType.INHIBIT) {
+                    /* Inhibit arc means the transition is enabled if the place is empty */
+                    if (markingPre[i] == 0) {
+                        enabled = true;
+                    } else {
+                        return false;
+                    }
                 }
             }
         }
@@ -363,6 +388,7 @@ public class PetriNetManager extends Thread {
     private void newPlace(String name, int initToken, int capacity) {
         places.add(new PetriPlace(name, capacity, initToken));
         markingPost[findPlaceIndex(name)] = initToken;
+        markingPre[findPlaceIndex(name)] = initToken;
     }
 
     /**
@@ -427,6 +453,16 @@ public class PetriNetManager extends Thread {
         matrix[findPlaceIndex(placeName)][findTransitionIndex(transitionName)] = weight;
     }
 
+    private void newPreIncidenceArc(int type, int weight, String fromPlace, String toTransition) {
+        PetriArcType arcType = PetriArcType.SIMPLE;
+        if (type == 1) {
+            arcType = PetriArcType.TEST;
+        } else if (type == 2) {
+            arcType = PetriArcType.INHIBIT;
+        }
+        preIncidenceArcs.add(new PetriArc(arcType, weight, fromPlace, toTransition));
+    }
+
     private void setupPreIncidenceArcs(BufferedReader bufferedReader, int nbArcs) throws IOException {
         String line = null;
         /* Read the Places */
@@ -437,6 +473,7 @@ public class PetriNetManager extends Thread {
                 String[] props = line.split(" ");
                 //printDebug("New Pre-incidence arc: " + Arrays.toString(props));
                 setIncidence(preIncidenceMatrix, props[0], props[1], Integer.parseInt(props[2]));
+                newPreIncidenceArc(Integer.parseInt(props[3]), Integer.parseInt(props[2]), props[0], props[1]);
                 i++;
             }
         } while(i < nbArcs);
