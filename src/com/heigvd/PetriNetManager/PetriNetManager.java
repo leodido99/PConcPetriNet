@@ -16,7 +16,7 @@ import java.util.Vector;
 /**
  * Created by leonard.bise on 18.04.18.
  */
-public class PetriNetManager {
+public class PetriNetManager extends Thread {
     private boolean debug = true;
 
     /* Post and Pre marking.
@@ -60,6 +60,9 @@ public class PetriNetManager {
     }
 
 
+    /**
+     * Constructor for the PetriNetManager
+     */
     public PetriNetManager() {
         places = new Vector<>();
         transitions = new Vector<>();
@@ -69,44 +72,82 @@ public class PetriNetManager {
         firedTransitions = new Vector<>();
     }
 
+    /**
+     * Print debug message if debug enabled
+     * @param message
+     */
     private void printDebug(String message) {
         if (this.debug) {
             System.out.println(message);
         }
     }
 
+    /**
+     * Fire a transition
+     * @param transitionName Transition to fire
+     */
     public void fireTransition(String transitionName) {
         transitions.get(findTransitionIndex(transitionName)).setFired(true);
-    }
-
-    public void startEngine() {
-
     }
 
     private void clearAllTransitionsEnableStatus() {
         for(PetriTransition transition : transitions) {
             transition.setEnabled(false);
         }
+        this.enabledTransitions.clear();
     }
 
+    /**
+     * Waits the duration of a tick
+     */
     private void waitTick() {
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Engine() {
+    /**
+     * Perform a single step of the RDP
+     */
+    public void step() {
+        clearAllTransitionsEnableStatus();
+        executePhase0();
+        executePhase1();
+        executePhase2();
+        executePhase3();
+        if (this.debug) {
+            for(int i : this.markingPost) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * The RDP engine
+     */
+    public void run(){
         while(true) {
-            clearAllTransitionsEnableStatus();
-            executePhase0();
-            executePhase1();
-            executePhase2();
-            executePhase3();
+            this.step();
             /* Wait for tick */
             waitTick();
         }
     }
 
     private void executeActivity(int placeIndex) {
-        places.get(placeIndex).getAction().execute();
+        if (places.get(placeIndex).getAction() != null) {
+            places.get(placeIndex).getAction().execute();
+        }
+    }
+
+    public int[] getMarkingPost() {
+        return markingPost;
+    }
+
+    public int[] getMarkingPre() {
+        return markingPre;
     }
 
     private void executePhase0() {
@@ -237,15 +278,20 @@ public class PetriNetManager {
      * Produce tokens in the place that are connected to the fired transitions
      */
     private void executePhase3() {
-        System.arraycopy(this.markingPost, 0, this.markingPre, 0, this.nbPlaces);
+        System.arraycopy(this.markingPre, 0, this.markingPost, 0, this.nbPlaces);
         for(PetriTransition transition : firedTransitions) {
             for(int i = 0; i < nbPlaces; i++) {
-                markingPost[i] = markingPost[i] + preIncidenceMatrix[i][findTransitionIndex(transition.getName())];
+                markingPost[i] = markingPost[i] + postIncidenceMatrix[i][findTransitionIndex(transition.getName())];
             }
         }
         firedTransitions.clear();
     }
 
+    /**
+     * Find a place from its name
+     * @param placeName Place name
+     * @return The place
+     */
     @Nullable
     private PetriPlace findPlace(String placeName) {
         for(PetriPlace place : places) {
@@ -256,12 +302,22 @@ public class PetriNetManager {
         throw new RuntimeException();
     }
 
+    /**
+     * Find a place index from its name
+     * @param placeName Place name
+     * @return Index of the place
+     */
     private int findPlaceIndex(String placeName) {
         int idx = places.indexOf(findPlace(placeName));
         //printDebug("findPlaceIndex: " + placeName + " = " + idx);
         return idx;
     }
 
+    /**
+     * Find a transition from its name
+     * @param transitionName Transition name
+     * @return The transition
+     */
     @Nullable
     private PetriTransition findTransition(String transitionName) {
         for(PetriTransition transition : transitions) {
@@ -272,12 +328,21 @@ public class PetriNetManager {
         throw new RuntimeException();
     }
 
+    /**
+     * Find a transition index from its name
+     * @param transitionName Transition name
+     * @return Index of the transition
+     */
     private int findTransitionIndex(String transitionName) {
         int idx = transitions.indexOf(findTransition(transitionName));
-        //printDebug("findTransitionIndex: " + transitionName + " = " + idx);
         return idx;
     }
 
+    /**
+     * Returns if a certain line of the text configuration is valid
+     * @param line Line of configuration
+     * @return validity
+     */
     private boolean isValidLine(String line) {
         boolean valid = false;
         // Check line is not comment or empty
@@ -295,7 +360,7 @@ public class PetriNetManager {
      * @param capacity Capacity of the place
      * @param initToken Number of starting tokens
      */
-    private void newPlace(String name, int capacity, int initToken) {
+    private void newPlace(String name, int initToken, int capacity) {
         places.add(new PetriPlace(name, capacity, initToken));
         markingPost[findPlaceIndex(name)] = initToken;
     }
@@ -404,6 +469,10 @@ public class PetriNetManager {
         printDebug("Places: " + places);
     }
 
+    /**
+     * Loads a petri net from an xml file
+     * @param fileName Xml file name
+     */
     public void loadFromXMLFile(String fileName) {
         printDebug("Loading Petri Net from " + fileName);
         try {
@@ -421,11 +490,17 @@ public class PetriNetManager {
             // Transitions
             nList = doc.getElementsByTagName("transition");
             setupTransitions(nList);
+
+            /* TODO */
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Loads a petri net from a text file
+     * @param fileName File name
+     */
     public void loadFromTextFile(String fileName) {
         int phase = 0;
 
@@ -496,8 +571,5 @@ public class PetriNetManager {
                     "Error reading file '"
                             + fileName + "'");
         }
-
-
     }
-
 }
