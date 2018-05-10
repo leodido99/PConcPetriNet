@@ -9,7 +9,6 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -107,7 +106,7 @@ public class PetriNetManager extends Thread {
      */
     private void waitTick() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -129,12 +128,24 @@ public class PetriNetManager extends Thread {
      */
     public void run(){
         while(true) {
-            this.step();
             /* Wait for tick */
             waitTick();
+            this.step();
+            if (this.debug) {
+                System.out.println("---------------------------");
+                for(int j = 0; j < markingPost.length; j++) {
+                    System.out.print(markingPost[j] + " ");
+                }
+                System.out.println();
+                System.out.println("---------------------------");
+            }
         }
     }
 
+    /**
+     * Executes the activity for the given place
+     * @param placeIndex Index of the place
+     */
     private void executeActivity(int placeIndex) {
         if (places.get(placeIndex).getAction() != null) {
             places.get(placeIndex).getAction().execute(places.get(placeIndex));
@@ -149,6 +160,10 @@ public class PetriNetManager extends Thread {
         return markingPre;
     }
 
+    /**
+     * Execute Phase 0 of the RDP
+     * Execute the actions of each places if required
+     */
     private void executePhase0() {
         for(int i = 0; i < this.nbPlaces; i++) {
             if (this.markingPost[i] > this.markingPre[i]) {
@@ -473,7 +488,7 @@ public class PetriNetManager extends Thread {
     }
 
     private void setupPreIncidenceArcs(BufferedReader bufferedReader, int nbArcs) throws IOException {
-        String line = null;
+        String line;
         /* Read the Places */
         int i = 0;
         do {
@@ -489,7 +504,7 @@ public class PetriNetManager extends Thread {
     }
 
     private void setupPostIncidenceArcs(BufferedReader bufferedReader, int nbArcs) throws IOException {
-        String line = null;
+        String line;
         /* Read the Places */
         int i = 0;
         do {

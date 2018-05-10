@@ -23,9 +23,21 @@ public class Vehicle extends Thread {
         System.out.println("Vehicle " + this.ID + " started");
         /* Loop as long as the vehicle is on the road */
         while(crossingPosition < crossing.getRoadLength()) {
-
-
-
+            /* Check if next position is free */
+            if (crossing.getPosition(this.northSouthRoad, this.crossingPosition + 1) == false) {
+                /* If next position is the crossing, we have to check the signal */
+                if (crossing.getCrossingPosition() == this.crossingPosition + 1) {
+                    /* Only move if the signal is green */
+                    if (crossing.getSignal(this.northSouthRoad).isGreen()) {
+                        this.crossingPosition++;
+                        crossing.move(this.northSouthRoad, this.crossingPosition);
+                    }
+                } else {
+                    /* Next spot is free */
+                    this.crossingPosition++;
+                    crossing.move(this.northSouthRoad, this.crossingPosition);
+                }
+            }
         }
         System.out.println("Vehicle " + this.ID + " reached the end of the road");
     }

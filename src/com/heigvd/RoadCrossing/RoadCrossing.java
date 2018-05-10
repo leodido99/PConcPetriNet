@@ -5,9 +5,15 @@ package com.heigvd.RoadCrossing;
  */
 public class RoadCrossing {
     private boolean[] northSouthRoad;
+    private RoadSignal northSouthSignal;
     private boolean[] westEastRoad;
+    private RoadSignal westEastSignal;
     private int crossingCenterPosition;
 
+    /**
+     * Initialize a road
+     * @param road The road to initialize
+     */
     private void initRoad(boolean[] road) {
         for(int i = 0; i < road.length; i++) {
             road[i] = false;
@@ -15,15 +21,31 @@ public class RoadCrossing {
     }
 
     /**
-     * Creates a new road crossing
-     * @param segmentLength Segment length after and before the crossing
+     * Returns the signal of the specified road
+     * @param northSouth
+     * @return
      */
-    public RoadCrossing(int segmentLength) {
-        northSouthRoad = new boolean[2 * segmentLength + 1];
-        westEastRoad = new boolean[2 * segmentLength + 1];
-        crossingCenterPosition = segmentLength;
+    public RoadSignal getSignal(boolean northSouth) {
+        if (northSouth) {
+            return northSouthSignal;
+        } else {
+            return westEastSignal;
+        }
+    }
+
+    /**
+     * Creates a new road crossing
+     * @param roadLength Length of the roads
+     */
+    public RoadCrossing(int roadLength) {
+        northSouthRoad = new boolean[roadLength];
+        westEastRoad = new boolean[roadLength];
+        crossingCenterPosition = roadLength / 2;
         initRoad(northSouthRoad);
         initRoad(westEastRoad);
+        northSouthSignal = new RoadSignal();
+        westEastSignal = new RoadSignal();
+
     }
 
     /**
@@ -35,15 +57,54 @@ public class RoadCrossing {
     }
 
     /**
-     * Returns
-     * @param position
-     * @return
+     * Returns the state of the given position
+     * @param northSouth True = North South Road, False = West East Road
+     * @param position Position on the road
+     * @return true = occupied, false = free
      */
-    public boolean getNorthSouthPosition(int position) {
-        return northSouthRoad[position];
+    public synchronized boolean getPosition(boolean northSouth, int position) {
+        if (northSouth) {
+            return northSouthRoad[position];
+        } else {
+            return westEastRoad[position];
+        }
     }
 
-    public boolean getWestEastPosition(int position) {
-        return westEastRoad[position];
+    /**
+     * Returns the position at which is the crossing
+     * @return Crossing position
+     */
+    public synchronized int getCrossingPosition() {
+        return this.crossingCenterPosition;
+    }
+
+    /**
+     * Move one place in the North South road
+     * @param position New position
+     */
+    public synchronized void move(boolean northSouth, int position) {
+        if (northSouth) {
+            northSouthRoad[position] = true;
+            northSouthRoad[position - 1] = false;
+        } else {
+            westEastRoad[position] = true;
+            westEastRoad[position -1] = false;
+        }
+    }
+
+    public RoadSignal getNorthSouthSignal() {
+        return northSouthSignal;
+    }
+
+    public void setNorthSouthSignal(RoadSignal northSouthSignal) {
+        this.northSouthSignal = northSouthSignal;
+    }
+
+    public RoadSignal getWestEastSignal() {
+        return westEastSignal;
+    }
+
+    public void setWestEastSignal(RoadSignal westEastSignal) {
+        this.westEastSignal = westEastSignal;
     }
 }

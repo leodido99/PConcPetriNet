@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{memoir}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[french]{babel}
+\usepackage{titlesec} % For chapter formatting
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{graphicx} % includegraphics
+\graphicspath{ {images/} }
+\usepackage[
+breaklinks=true,colorlinks=true,
+linkcolor=black,urlcolor=black,citecolor=black,
+bookmarks=true,bookmarksopenlevel=2]{hyperref}  % Links color in pdf
+\usepackage{bookmark} % Creates bookmarks in pdf files
+\usepackage[
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm,
+  headsep=3pt,
+  footskip=30pt,
+  headheight=46pt,
+  asymmetric
+]{geometry}
+
+% Header
+\pagestyle{fancy}
+\fancypagestyle{main}{%
+  \lhead{\includegraphics[scale=0.5]{HEIG-VD}}
+  \rhead{\sffamily Projet Réseau de Petri\\Bise Léonard\\Informatique Embarquée (ISEC)}
+  \rfoot{Page \thepage}
+  \cfoot{}
+}
+\fancypagestyle{plain}{%
+  \lhead{\includegraphics[scale=0.5]{HEIG-VD}}
+  \rhead{\sffamily Projet Réseau de Petri\\Bise Léonard\\Informatique Embarquée (ISEC)}
+    \rfoot{Page \thepage}
+      \cfoot{}
+}
+
+% Modifie la section chapitre
+\titleformat{\chapter}
+  {\sffamily\LARGE\bfseries}{\thechapter}{1em}{}
+% spacing: how to read {12pt plus 4pt minus 2pt}
+%           12pt is what we would like the spacing to be
+%           plus 4pt means that TeX can stretch it by at most 4pt
+%           minus 2pt means that TeX can shrink it by at most 2pt
+%       This is one example of the concept of, 'glue', in TeX
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+% Sets sections to sans serif
+\setsecheadstyle{\LARGE\bfseries\sffamily}
+\setsubsecheadstyle{\Large\bfseries\sffamily}
+\setsubsubsecheadstyle{\large\bfseries\sffamily}
+\setparaheadstyle{\large\bfseries\sffamily}
+\setsubparaheadstyle{\large\bfseries\sffamily}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%% Page de Titre %%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+\sffamily
+
+% Logo HEIG-VD
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,yshift=-40pt,xshift=40pt]%
+        at (current page.north west)
+        {\includegraphics[scale=0.8]{HEIG-VD}};
+\end{tikzpicture}
+
+\large
+
+~\vspace{\fill}
+
+\begin{center}
+{\HUGE 
+Gestion d'un carrefour à l'aide d'un réseau de Petri
+}
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+{\LARGE
+Rapport du projet
+}
+\end{center}
+
+\vspace{3.5cm}
+
+\begin{flushleft}
+Auteur: Bise Léonard\\
+Professeur: Zysman Eytan\\
+Filière: Informatique Embarquée (ISEC)\\
+Cours: Programmation Concurrente (PConc)\\
+Date: 10 Mai 2018
+\end{flushleft}
+
+\vspace{\fill}
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%% Table des matières %%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%% Liste des figures %%%%%%%%%%%%%%%%%%%%%%%
+
+\listoffigures  % Write out the List of Figures
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%% Liste des Tables %%%%%%%%%%%%%%%%%%%%%%%
+
+\listoftables  % Write out the List of Tables
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%% Introduction %%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+Dans le cadre du cours Programmation Concurrente (PConc), il nous a été demandé de créer un programme qui simule le comportement d'un carrefour. Le carrefour est composé de deux flux, un Sud-Nord et l'autre Ouest-Est ou les voitures circulent dans un seul sens. A l'intersection des deux flux sont placé deux feux de signalisation, un par flux, ils permettent ou non au voiture de passer.\par
+La gestion du système est fait grâce à un réseau de Petri qui réagit aux événement et qui produit des actions.
+
+
+Test \cite{Reference1}
+
+\section{Test}
+
+This is a test text also
+
+\subsection{Test subsection}
+
+\subsubsection{subsub test}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% Bibliographie %%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{unsrt}
+\bibliography{bibliographie}  % The references (bibliography) information are stored in the file named "bibliographie.bib"
+
+\end{document}
