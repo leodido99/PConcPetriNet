@@ -20,7 +20,7 @@ public class Vehicle extends Thread {
      * Thread content for the vehicle
      */
     public void run() {
-        System.out.println("Vehicle " + this.ID + " started");
+        System.out.println("Vehicle " + this.ID + " created");
         /* Loop as long as the vehicle is on the road */
         while(crossingPosition < crossing.getRoadLength()) {
             /* Check if next position is free */

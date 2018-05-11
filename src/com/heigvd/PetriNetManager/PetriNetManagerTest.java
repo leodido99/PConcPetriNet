@@ -192,6 +192,26 @@ class PetriNetManagerTest {
         this.smallPetrinet1Steps(petriNet, actionHandler);
     }
 
+    @org.junit.jupiter.api.Test
+    void transitionWithoutPreIncidence() {
+        int expectedInitialMarking[] = { 0 };
+        int expectedStep1Marking[] = { 1 };
+        PetriNetManager petriNet = new PetriNetManager();
+        petriNet.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/transition_without_preincidence.cfg");
+        this.printVector("Initial Marking", petriNet.getMarkingPost());
+        assertArrayEquals(expectedInitialMarking, petriNet.getMarkingPost());
+        /* --- Step 1 --- */
+        /* Perform a step */
+        int step = 1;
+        System.out.println("--- Step " + step + " ---");
+        petriNet.fireTransition("T1");
+        petriNet.step();
+        this.printVector("Step Marking", petriNet.getMarkingPost());
+        assertArrayEquals(expectedStep1Marking, petriNet.getMarkingPost());
+
+
+    }
+
     /*@org.junit.jupiter.api.Test
     void loadFromTextFileXml1() {
         PetriNetManager petriNet = new PetriNetManager();
