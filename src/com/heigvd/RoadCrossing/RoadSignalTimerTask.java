@@ -14,6 +14,9 @@ public class RoadSignalTimerTask extends TimerTask {
         this.evManager = evManager;
     }
 
+    /**
+     * When the timer elapses the timer event is triggered
+     */
     public void run() {
         evManager.triggerTimer(this.timer1);
     }

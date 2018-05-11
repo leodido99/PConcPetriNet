@@ -158,9 +158,6 @@ public class PetriNetManager extends Thread {
      */
     private void executeActivity(int placeIndex) {
         if (places.get(placeIndex).getAction() != null) {
-            if (this.debug) {
-                System.out.println("Execute activity for place " + places.get(placeIndex).getName());
-            }
             places.get(placeIndex).getAction().execute(places.get(placeIndex));
         }
     }
@@ -315,6 +312,14 @@ public class PetriNetManager extends Thread {
         } else {
             return false;
         }
+    }
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 
     /**

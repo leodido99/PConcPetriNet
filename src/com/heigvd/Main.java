@@ -9,22 +9,27 @@ public class Main {
         petriNet.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/roadCrossingRDP.cfg");
         /* Create the roads and the signals */
         RoadCrossing crossing = new RoadCrossing(10);
+        /* Create the manager for events */
+        RoadCrossingEventManager evManager = new RoadCrossingEventManager(petriNet);
         /* Create actions that manage the signal change */
         SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true);
         SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false);
         SignalStateAction WESignalGreenAction = new SignalStateAction(crossing.getSignal(false), true);
         SignalStateAction WESignalRedAction = new SignalStateAction(crossing.getSignal(false), false);
+        /* Timer actions */
+        RoadSignalTimerAction NSSignalTimerAction = new RoadSignalTimerAction(evManager, true);
+        RoadSignalTimerAction WESignalTimerAction = new RoadSignalTimerAction(evManager, false);
         /* Add actions to Petri Net Places */
         petriNet.setPlaceAction("FABlock", NSSignalRedAction);
         petriNet.setPlaceAction("FAAllow", NSSignalGreenAction);
         petriNet.setPlaceAction("FBBlock", WESignalRedAction);
         petriNet.setPlaceAction("FBAllow", WESignalGreenAction);
+        petriNet.setPlaceAction("FBBeforeX", NSSignalTimerAction);
+        petriNet.setPlaceAction("FABeforeX", WESignalTimerAction);
         NSSignalRedAction.setDebug(true);
         NSSignalGreenAction.setDebug(true);
         WESignalRedAction.setDebug(true);
         WESignalGreenAction.setDebug(true);
-        /* Create the manager for events */
-        RoadCrossingEventManager evManager = new RoadCrossingEventManager(petriNet);
         /* Create vehicle creator */
         VehicleCreator creatorNS = new VehicleCreator(0, true, crossing, evManager);
         creatorNS.setDebug(true);
@@ -41,5 +46,18 @@ public class Main {
         detectorBeforeCrossingNS.start();
         detectorInCrossingNS.start();
         creatorNS.start();
+        detectorBeforeCrossingWE.start();
+        detectorInCrossingWE.start();
+        creatorWE.start();
+
+
+
+        /*try {
+            Thread.sleep(10 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        crossing.getSignal(true).setGreen(false);
+        System.out.println("Light red");*/
     }
 }

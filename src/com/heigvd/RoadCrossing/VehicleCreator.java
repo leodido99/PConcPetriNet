@@ -30,6 +30,13 @@ public class VehicleCreator extends Thread {
         this.evManager = evManager;
     }
 
+    private boolean canCreateVehicle() {
+        if (this.crossing.getPosition(this.northSouth, 0)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Job of the VehicleCreator
      */
@@ -41,16 +48,18 @@ public class VehicleCreator extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            vehicleCounter++;
-            /* Create new vehicle */
-            Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth);
-            /* Trigger new car event */
-            evManager.triggerNewCar(northSouth);
-            if (this.debug) {
-                myVehicle.setDebug(true);
+            /* Check if the road is clear to create a new vehicle */
+            if (canCreateVehicle()) {
+                vehicleCounter++;
+                /* Create new vehicle */
+                Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth, evManager);
+                if (this.debug) {
+                    myVehicle.setDebug(true);
+                }
+                /* Start thread */
+                myVehicle.start();
+
             }
-            /* Start thread */
-            myVehicle.start();
         }
     }
 

@@ -14,6 +14,7 @@ public class RoadCrossingDetector extends Thread {
     private RoadCrossingEventManager evManager;
     private boolean beforeCrossing;
     private boolean positionExpectedState;
+    private boolean fired;
 
     /**
      * Constructor of the detector
@@ -27,6 +28,7 @@ public class RoadCrossingDetector extends Thread {
         this.evManager = evManager;
         this.beforeCrossing = beforeCrossing;
         this.positionExpectedState = positionExpectedState;
+        this.fired = false;
     }
 
     /**
@@ -52,12 +54,17 @@ public class RoadCrossingDetector extends Thread {
     public void run() {
         while(enable) {
             if (crossing.getPosition(this.northSouth, this.detectorPosition) == this.positionExpectedState) {
-                /* Fire Event */
-                if (this.beforeCrossing) {
-                    this.evManager.triggerCarBeforeCrossing(this.northSouth);
-                } else {
-                    this.evManager.triggerCarExitCrossing(this.northSouth);
+                if (this.fired == false) {
+                    this.fired = true;
+                    /* Fire Event */
+                    if (this.beforeCrossing) {
+                        this.evManager.triggerCarBeforeCrossing(this.northSouth);
+                    } else {
+                        this.evManager.triggerCrossingEmpty(this.northSouth);
+                    }
                 }
+            } else {
+                this.fired = false;
             }
         }
     }

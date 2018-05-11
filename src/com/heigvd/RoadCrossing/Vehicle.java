@@ -18,12 +18,14 @@ public class Vehicle extends Thread {
     private int crossingPosition;
     private boolean northSouthRoad;
     private RoadCrossing crossing;
+    private RoadCrossingEventManager evManager;
 
-    public Vehicle(int ID, int crossingPosition, RoadCrossing crossing, boolean northSouthRoad) {
+    public Vehicle(int ID, int crossingPosition, RoadCrossing crossing, boolean northSouthRoad, RoadCrossingEventManager evManager) {
         this.ID = ID;
         this.crossingPosition = crossingPosition;
         this.crossing = crossing;
         this.northSouthRoad = northSouthRoad;
+        this.evManager = evManager;
     }
 
     /**
@@ -33,27 +35,27 @@ public class Vehicle extends Thread {
         System.out.println("Vehicle " + this.ID + " created");
         /* Loop as long as the vehicle is on the road */
         while(crossingPosition < crossing.getRoadLength() - 1) {
-            System.out.println("Vehicle " + this.ID + " position = " + crossingPosition);
             /* Check if next position is free */
             if (crossing.getPosition(this.northSouthRoad, this.crossingPosition + 1) == false) {
                 /* If next position is the crossing, we have to check the signal */
                 if (crossing.getCrossingPosition() == this.crossingPosition + 1) {
                     /* Only move if the signal is green */
                     if (crossing.getSignal(this.northSouthRoad).isGreen()) {
-                        if (this.debug) {
-                            System.out.println("Check signal -> Green");
-                        }
+                        evManager.triggerGreenLight(this.northSouthRoad);
                         this.crossingPosition++;
                         crossing.move(this.northSouthRoad, this.crossingPosition);
-                    } else {
-                        if (this.debug) {
-                            System.out.println("Check signal -> Red");
-                        }
                     }
                 } else {
                     /* Next spot is free */
                     this.crossingPosition++;
                     crossing.move(this.northSouthRoad, this.crossingPosition);
+                }
+                if (this.debug) {
+                    System.out.println("Vehicle " + this.ID + " position = " + crossingPosition);
+                }
+                if (this.crossingPosition == crossing.getCrossingPosition() + 1) {
+                    /* The car left the crossing */
+                    evManager.triggerCarExitCrossing(this.northSouthRoad);
                 }
             }
             /* Random delay minimum 1 second maximum 3 seconds */
