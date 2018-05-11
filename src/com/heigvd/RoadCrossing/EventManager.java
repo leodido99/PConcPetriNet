@@ -34,7 +34,7 @@ public class EventManager {
     public void fireEvent(String eventName) {
         for(Event ev : eventList) {
             if (ev.getName().equals(eventName)) {
-                petriNetManager.fireTransition(ev.getPetriNetTransition());
+                petriNetManager.newEvent(ev.getPetriNetTransition());
                 break;
             }
         }

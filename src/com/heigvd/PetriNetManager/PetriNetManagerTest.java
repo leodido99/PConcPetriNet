@@ -1,8 +1,6 @@
 package com.heigvd.PetriNetManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,10 +82,15 @@ class PetriNetManagerTest {
         assertArrayEquals(expectedPostIncidence, petriNet.getPostIncidenceMatrix());
         this.printVector("Marking after step " + step, petriNet.getMarkingPost());
         assertArrayEquals(expectedInitialMarking, petriNet.getMarkingPost());
-        assertEquals(0, actionHandler.getExecutedActions().size());
+        assertEquals(2, actionHandler.getExecutedActions().size());
+        ArrayList<String> expectedExecutedActions = new ArrayList<>();
+        expectedExecutedActions.add("P1");
+        expectedExecutedActions.add("P3");
+        assertArrayEquals(expectedExecutedActions.toArray(), actionHandler.getExecutedActions().toArray());
+        actionHandler.getExecutedActions().clear();
         /* --- Step 2 --- */
         /* Fire transition */
-        petriNet.fireTransition("T1");
+        petriNet.newEvent("T1");
         step = 2;
         System.out.println("--- Step " + step + " ---");
         petriNet.step();
@@ -111,7 +114,7 @@ class PetriNetManagerTest {
         this.printVector("Marking after step " + step, petriNet.getMarkingPost());
         assertArrayEquals(expectedStep2Marking, petriNet.getMarkingPost());
         assertEquals(1, actionHandler.getExecutedActions().size());
-        ArrayList<String> expectedExecutedActions = new ArrayList<>();
+        expectedExecutedActions.clear();
         expectedExecutedActions.add("P2");
         assertArrayEquals(expectedExecutedActions.toArray(), actionHandler.getExecutedActions().toArray());
         actionHandler.getExecutedActions().clear();
@@ -119,7 +122,7 @@ class PetriNetManagerTest {
         step = 4;
         System.out.println("--- Step " + step + " ---");
         /* Fire transition */
-        petriNet.fireTransition("T23");
+        petriNet.newEvent("T23");
         petriNet.step();
         this.printMatrix("Pre-Incidence Matrix after step " + step, petriNet.getPreIncidenceMatrix());
         this.printMatrix("Post-Incidence Matrix after step " + step, petriNet.getPostIncidenceMatrix());
@@ -149,8 +152,8 @@ class PetriNetManagerTest {
         /* --- Step 6 --- */
         /* Verify only one consumption when two transition enabled on same place */
         /* Fire transition */
-        petriNet.fireTransition("T41");
-        petriNet.fireTransition("T42");
+        petriNet.newEvent("T41");
+        petriNet.newEvent("T42");
         step = 6;
         System.out.println("--- Step " + step + " ---");
         petriNet.step();
@@ -196,6 +199,7 @@ class PetriNetManagerTest {
     void transitionWithoutPreIncidence() {
         int expectedInitialMarking[] = { 0 };
         int expectedStep1Marking[] = { 1 };
+        int expectedStep2Marking[] = { 1 };
         PetriNetManager petriNet = new PetriNetManager();
         petriNet.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/transition_without_preincidence.cfg");
         this.printVector("Initial Marking", petriNet.getMarkingPost());
@@ -204,12 +208,18 @@ class PetriNetManagerTest {
         /* Perform a step */
         int step = 1;
         System.out.println("--- Step " + step + " ---");
-        petriNet.fireTransition("T1");
+        petriNet.newEvent("T1");
         petriNet.step();
         this.printVector("Step Marking", petriNet.getMarkingPost());
         assertArrayEquals(expectedStep1Marking, petriNet.getMarkingPost());
-
-
+        /* --- Step 2 --- */
+        /* Verify nothing changes after another step */
+        /* Perform a step */
+        step = 2;
+        System.out.println("--- Step " + step + " ---");
+        petriNet.step();
+        this.printVector("Step Marking", petriNet.getMarkingPost());
+        assertArrayEquals(expectedStep2Marking, petriNet.getMarkingPost());
     }
 
     /*@org.junit.jupiter.api.Test

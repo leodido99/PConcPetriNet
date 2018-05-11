@@ -6,6 +6,16 @@ import com.heigvd.PetriNetManager.PetriNetManager;
  * Created by leonard.bise on 09.05.18.
  */
 public class VehicleCreator extends Thread {
+    private boolean debug;
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+
     private int creatorID;
     private int vehicleCounter;
     private boolean northSouth;
@@ -36,8 +46,11 @@ public class VehicleCreator extends Thread {
             Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth);
             /* Trigger new car event */
             evManager.triggerNewCar(northSouth);
+            if (this.debug) {
+                myVehicle.setDebug(true);
+            }
             /* Start thread */
-            myVehicle.run();
+            myVehicle.start();
         }
     }
 

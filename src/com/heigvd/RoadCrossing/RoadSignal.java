@@ -5,8 +5,19 @@ package com.heigvd.RoadCrossing;
  */
 public class RoadSignal {
     private boolean green;
+    private String name;
 
-    public RoadSignal() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public RoadSignal(String name) {
+        this.name = name;
+
         green = false;
     }
 

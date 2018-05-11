@@ -43,8 +43,8 @@ public class RoadCrossing {
         crossingCenterPosition = roadLength / 2;
         initRoad(northSouthRoad);
         initRoad(westEastRoad);
-        northSouthSignal = new RoadSignal();
-        westEastSignal = new RoadSignal();
+        northSouthSignal = new RoadSignal("northSouthSignal");
+        westEastSignal = new RoadSignal("westEastSignal");
 
     }
 
@@ -84,11 +84,39 @@ public class RoadCrossing {
      */
     public synchronized void move(boolean northSouth, int position) {
         if (northSouth) {
+            if (northSouthRoad[position]) {
+                /* Next position is already filled */
+                throw new RuntimeException();
+            }
             northSouthRoad[position] = true;
             northSouthRoad[position - 1] = false;
         } else {
+            if (westEastRoad[position]) {
+                /* Next position is already filled */
+                throw new RuntimeException();
+            }
             westEastRoad[position] = true;
             westEastRoad[position -1] = false;
+        }
+    }
+
+    /**
+     * Leave the crossing
+     * @param northSouth
+     */
+    public synchronized void leave(boolean northSouth) {
+        if (northSouth) {
+            if (northSouthRoad[this.getRoadLength() - 1] == false) {
+                /* No one at end of road */
+                throw new RuntimeException();
+            }
+            northSouthRoad[this.getRoadLength() - 1] = false;
+        } else {
+            if (westEastRoad[this.getRoadLength() - 1] == false) {
+                /* No one at end of road */
+                throw new RuntimeException();
+            }
+            westEastRoad[this.getRoadLength() - 1] = false;
         }
     }
 

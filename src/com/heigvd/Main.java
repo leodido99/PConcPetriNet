@@ -19,10 +19,15 @@ public class Main {
         petriNet.setPlaceAction("FAAllow", NSSignalGreenAction);
         petriNet.setPlaceAction("FBBlock", WESignalRedAction);
         petriNet.setPlaceAction("FBAllow", WESignalGreenAction);
+        NSSignalRedAction.setDebug(true);
+        NSSignalGreenAction.setDebug(true);
+        WESignalRedAction.setDebug(true);
+        WESignalGreenAction.setDebug(true);
         /* Create the manager for events */
         RoadCrossingEventManager evManager = new RoadCrossingEventManager(petriNet);
         /* Create vehicle creator */
         VehicleCreator creatorNS = new VehicleCreator(0, true, crossing, evManager);
+        creatorNS.setDebug(true);
         VehicleCreator creatorWE = new VehicleCreator(1, false, crossing, evManager);
         /* Create detectors */
         RoadCrossingDetector detectorBeforeCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, true, true, true, evManager);
@@ -33,6 +38,8 @@ public class Main {
 
 
         petriNet.start();
+        detectorBeforeCrossingNS.start();
+        detectorInCrossingNS.start();
         creatorNS.start();
     }
 }

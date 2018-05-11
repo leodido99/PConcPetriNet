@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -47,6 +48,8 @@ public class PetriNetManager extends Thread {
     private int nbPreIncidenceArcs = -1;
     private int nbPostIncidenceArcs = -1;
 
+    private ArrayList<String> eventList;
+
     public int[][] getPreIncidenceMatrix() {
         return preIncidenceMatrix;
     }
@@ -65,6 +68,7 @@ public class PetriNetManager extends Thread {
         preIncidenceArcs = new Vector<>();
         enabledTransitions = new Vector<>();
         firedTransitions = new Vector<>();
+        eventList = new ArrayList<>();
     }
 
     /**
@@ -81,10 +85,16 @@ public class PetriNetManager extends Thread {
      * Fire a transition
      * @param transitionName Transition to fire
      */
-    public void fireTransition(String transitionName) {
+    public void newEvent(String transitionName) {
+        eventList.add(transitionName);
+        /* TODO */
+
         transitions.get(findTransitionIndex(transitionName)).setFired(true);
     }
 
+    /**
+     * Set all transition to not be enabled (Sensibilisée)
+     */
     private void clearAllTransitionsEnableStatus() {
         for(PetriTransition transition : transitions) {
             transition.setEnabled(false);
@@ -148,14 +158,25 @@ public class PetriNetManager extends Thread {
      */
     private void executeActivity(int placeIndex) {
         if (places.get(placeIndex).getAction() != null) {
+            if (this.debug) {
+                System.out.println("Execute activity for place " + places.get(placeIndex).getName());
+            }
             places.get(placeIndex).getAction().execute(places.get(placeIndex));
         }
     }
 
+    /**
+     * Returns the post marking
+     * @return Post marking
+     */
     public int[] getMarkingPost() {
         return markingPost;
     }
 
+    /**
+     * Returns the pre marking
+     * @return Pre marking
+     */
     public int[] getMarkingPre() {
         return markingPre;
     }
@@ -196,22 +217,23 @@ public class PetriNetManager extends Thread {
      * @return true = enabled, false = not enabled
      */
     private boolean isEnabled(int transitionIndex) {
-        boolean enabled = false;
+        /* By default transitions are enabled
+         * Used to allow transition with no connected places to be enabled */
+        boolean enabled = true;
+        /* For each place get all the arcs that are connected to the transition */
         for(int i = 0; i < nbPlaces; i++) {
             Vector<PetriArc> connectedArcs = getAllConnectedArcs(i, transitionIndex);
             for(PetriArc arc : connectedArcs) {
+                /* Depending on the type of the arc verify if the transition is enabled */
                 if (arc.getType() == PetriArcType.SIMPLE || arc.getType() == PetriArcType.TEST) {
-                    /* If the arc is simple that means the marking must be greater or equal */
-                    if (markingPre[i] >= preIncidenceMatrix[i][transitionIndex]) {
-                        enabled = true;
-                    } else {
+                    /* For the simple or test arcs if the marking is lesser than what is in the
+                     * pre-incidence matrix, the transition is not enabled */
+                    if (markingPre[i] < preIncidenceMatrix[i][transitionIndex]) {
                         return false;
                     }
                 } else if (arc.getType() == PetriArcType.INHIBIT) {
-                    /* Inhibit arc means the transition is enabled if the place is empty */
-                    if (markingPre[i] == 0) {
-                        enabled = true;
-                    } else {
+                    /* For inhibit arcs the marking must be equal to zero for the transition to be enabled */
+                    if (markingPre[i] != 0) {
                         return false;
                     }
                 }
@@ -282,13 +304,27 @@ public class PetriNetManager extends Thread {
     }
 
     /**
+     * Returns whether the passed transition has been fired (An event is present in the queue)
+     * @param transitionName Name of the transition
+     * @return true = event happened, false = event didn't happen
+     */
+    private boolean TransitionEventHappened(String transitionName) {
+        if (eventList.contains(transitions.get(findTransitionIndex(transitionName)).getName())) {
+            eventList.remove(transitions.get(findTransitionIndex(transitionName)).getName());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Execute Phase 2 of the RDP
      * Check for all enabled transitions (sensibilisée) which one have been fired
      */
     private void executePhase2() {
         Vector<PetriTransition> updatedTransitions = new Vector<>();
         for(PetriTransition transition : enabledTransitions) {
-            if (transition.isFired() && transition.isEnabled()) {
+            if (TransitionEventHappened(transition.getName()) && transition.isEnabled()) {
                 Vector<Integer> modifiedPlaces = consumeAllTokens(findTransitionIndex(transition.getName()));
                 firedTransitions.add(transition);
                 /* Transition has been fired */
@@ -403,7 +439,6 @@ public class PetriNetManager extends Thread {
     private void newPlace(String name, int initToken, int capacity) {
         places.add(new PetriPlace(name, capacity, initToken));
         markingPost[findPlaceIndex(name)] = initToken;
-        markingPre[findPlaceIndex(name)] = initToken;
     }
 
     /**
