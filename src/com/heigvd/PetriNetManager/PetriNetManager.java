@@ -87,9 +87,6 @@ public class PetriNetManager extends Thread {
      */
     public void newEvent(String transitionName) {
         eventList.add(transitionName);
-        /* TODO */
-
-        transitions.get(findTransitionIndex(transitionName)).setFired(true);
     }
 
     /**

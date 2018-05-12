@@ -46,14 +46,14 @@ public class Vehicle extends Thread {
                         evManager.triggerGreenLight(this.northSouthRoad);
                         this.crossingPosition++;
                         crossing.move(this.northSouthRoad, this.crossingPosition);
+                        if (debug) {
+                            System.out.println("Vehicle " + this.ID + " entered the crossing");
+                        }
                     }
                 } else {
                     /* Next spot is free */
                     this.crossingPosition++;
                     crossing.move(this.northSouthRoad, this.crossingPosition);
-                }
-                if (this.debug) {
-                    //System.out.println("Vehicle " + this.ID + " position = " + crossingPosition);
                 }
                 if (this.crossingPosition == crossing.getCrossingPosition() + 1) {
                     /* The car left the crossing */

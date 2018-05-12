@@ -3,7 +3,35 @@ package com.heigvd;
 import com.heigvd.PetriNetManager.PetriNetManager;
 import com.heigvd.RoadCrossing.*;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
+    private static void createGUI() {
+        final JFrame frame = new JFrame("RDP GUI");
+
+        JTable table = new JTable(5, 1);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        frame.getContentPane().setLayout(new BorderLayout());
+
+
+
+        table.setFillsViewportHeight(true);
+
+        JLabel lblHeading = new JLabel("Stock Quotes");
+        lblHeading.setFont(new Font("Arial",Font.TRUETYPE_FONT,24));
+
+        frame.getContentPane().setLayout(new BorderLayout());
+
+            //frame.getContentPane().add(lblHeading,BorderLayout.PAGE_START);
+        frame.getContentPane().add(scrollPane,BorderLayout.CENTER);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(550, 200);
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) {
         PetriNetManager petriNet = new PetriNetManager();
         petriNet.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/roadCrossingRDP.cfg");
@@ -48,5 +76,9 @@ public class Main {
         detectorBeforeCrossingWE.start();
         detectorInCrossingWE.start();
         creatorWE.start();
+
+        Main.createGUI();
+        //RoadCrossingGUI gui = new RoadCrossingGUI();
+
     }
 }
