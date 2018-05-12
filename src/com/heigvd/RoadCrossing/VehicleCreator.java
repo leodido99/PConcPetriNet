@@ -52,7 +52,7 @@ public class VehicleCreator extends Thread {
             if (canCreateVehicle()) {
                 vehicleCounter++;
                 /* Create new vehicle */
-                Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth, evManager);
+                Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth, evManager, (Math.random() * 2 + 1) * 1000);
                 if (this.debug) {
                     myVehicle.setDebug(true);
                 }

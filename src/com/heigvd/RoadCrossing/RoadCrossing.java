@@ -88,11 +88,19 @@ public class RoadCrossing {
                 /* Next position is already filled */
                 throw new RuntimeException();
             }
+            if (getCrossingPosition() == position && westEastRoad[position]) {
+                /* Accident! */
+                throw new RuntimeException();
+            }
             northSouthRoad[position] = true;
             northSouthRoad[position - 1] = false;
         } else {
             if (westEastRoad[position]) {
                 /* Next position is already filled */
+                throw new RuntimeException();
+            }
+            if (getCrossingPosition() == position && northSouthRoad[position]) {
+                /* Accident! */
                 throw new RuntimeException();
             }
             westEastRoad[position] = true;

@@ -11,14 +11,14 @@ public class Main {
         RoadCrossing crossing = new RoadCrossing(10);
         /* Create the manager for events */
         RoadCrossingEventManager evManager = new RoadCrossingEventManager(petriNet);
-        /* Create actions that manage the signal change */
-        SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true);
-        SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false);
-        SignalStateAction WESignalGreenAction = new SignalStateAction(crossing.getSignal(false), true);
-        SignalStateAction WESignalRedAction = new SignalStateAction(crossing.getSignal(false), false);
         /* Timer actions */
-        RoadSignalTimerAction NSSignalTimerAction = new RoadSignalTimerAction(evManager, true);
-        RoadSignalTimerAction WESignalTimerAction = new RoadSignalTimerAction(evManager, false);
+        RoadSignalTimerAction NSSignalTimerAction = new RoadSignalTimerAction(evManager, false, true, crossing);
+        RoadSignalTimerAction WESignalTimerAction = new RoadSignalTimerAction(evManager, true, false, crossing);
+        /* Create actions that manage the signal change */
+        SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true, null);
+        SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false, NSSignalTimerAction);
+        SignalStateAction WESignalGreenAction = new SignalStateAction(crossing.getSignal(false), true, null);
+        SignalStateAction WESignalRedAction = new SignalStateAction(crossing.getSignal(false), false, WESignalTimerAction);
         /* Add actions to Petri Net Places */
         petriNet.setPlaceAction("FABlock", NSSignalRedAction);
         petriNet.setPlaceAction("FAAllow", NSSignalGreenAction);
@@ -34,14 +34,13 @@ public class Main {
         VehicleCreator creatorNS = new VehicleCreator(0, true, crossing, evManager);
         creatorNS.setDebug(true);
         VehicleCreator creatorWE = new VehicleCreator(1, false, crossing, evManager);
+        creatorWE.setDebug(true);
         /* Create detectors */
         RoadCrossingDetector detectorBeforeCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, true, true, true, evManager);
         RoadCrossingDetector detectorBeforeCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, false, true, true, evManager);
         RoadCrossingDetector detectorInCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), true, false, false, evManager);
         RoadCrossingDetector detectorInCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), false, false, false, evManager);
-
-
-
+        /* Start actors */
         petriNet.start();
         detectorBeforeCrossingNS.start();
         detectorInCrossingNS.start();
@@ -49,15 +48,5 @@ public class Main {
         detectorBeforeCrossingWE.start();
         detectorInCrossingWE.start();
         creatorWE.start();
-
-
-
-        /*try {
-            Thread.sleep(10 * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        crossing.getSignal(true).setGreen(false);
-        System.out.println("Light red");*/
     }
 }

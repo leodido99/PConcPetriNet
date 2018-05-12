@@ -8,6 +8,7 @@ import com.heigvd.PetriNetManager.PetriPlaceInterface;
  */
 public class SignalStateAction implements PetriPlaceInterface {
     private boolean debug;
+    private RoadSignalTimerAction signalTimerAction;
 
     public boolean isDebug() {
         return debug;
@@ -20,10 +21,11 @@ public class SignalStateAction implements PetriPlaceInterface {
     private RoadSignal signal;
     private boolean signalState;
 
-    public SignalStateAction(RoadSignal signal, boolean signalState) {
+    public SignalStateAction(RoadSignal signal, boolean signalState, RoadSignalTimerAction signalTimerAction) {
         this.signal = signal;
         this.signalState = signalState;
         this.debug = false;
+        this.signalTimerAction = signalTimerAction;
     }
 
     public void execute(PetriPlace place) {
@@ -31,5 +33,9 @@ public class SignalStateAction implements PetriPlaceInterface {
             System.out.println("SignalStateAction: " + this.signal.getName() + " State = " + (this.signalState ? "Green" : "Red"));
         }
         this.signal.setGreen(this.signalState);
+        if (this.signalTimerAction != null) {
+            /* Enable the signal timer again */
+            this.signalTimerAction.setEnabled(true);
+        }
     }
 }

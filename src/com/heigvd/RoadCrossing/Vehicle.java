@@ -14,18 +14,20 @@ public class Vehicle extends Thread {
         this.debug = debug;
     }
 
+    private Double delay;
     private int ID;
     private int crossingPosition;
     private boolean northSouthRoad;
     private RoadCrossing crossing;
     private RoadCrossingEventManager evManager;
 
-    public Vehicle(int ID, int crossingPosition, RoadCrossing crossing, boolean northSouthRoad, RoadCrossingEventManager evManager) {
+    public Vehicle(int ID, int crossingPosition, RoadCrossing crossing, boolean northSouthRoad, RoadCrossingEventManager evManager, Double delay) {
         this.ID = ID;
         this.crossingPosition = crossingPosition;
         this.crossing = crossing;
         this.northSouthRoad = northSouthRoad;
         this.evManager = evManager;
+        this.delay = delay;
     }
 
     /**
@@ -51,16 +53,15 @@ public class Vehicle extends Thread {
                     crossing.move(this.northSouthRoad, this.crossingPosition);
                 }
                 if (this.debug) {
-                    System.out.println("Vehicle " + this.ID + " position = " + crossingPosition);
+                    //System.out.println("Vehicle " + this.ID + " position = " + crossingPosition);
                 }
                 if (this.crossingPosition == crossing.getCrossingPosition() + 1) {
                     /* The car left the crossing */
                     evManager.triggerCarExitCrossing(this.northSouthRoad);
                 }
             }
-            /* Random delay minimum 1 second maximum 3 seconds */
             try {
-                Thread.sleep((int) (Math.random() * 2 + 1) * 1000);
+                Thread.sleep(this.delay.intValue());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
