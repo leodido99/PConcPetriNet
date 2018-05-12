@@ -78,7 +78,5 @@ public class Main {
         creatorWE.start();
 
         Main.createGUI();
-        //RoadCrossingGUI gui = new RoadCrossingGUI();
-
     }
 }

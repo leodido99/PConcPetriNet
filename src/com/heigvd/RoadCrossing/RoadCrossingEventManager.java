@@ -9,10 +9,7 @@ public class RoadCrossingEventManager {
     private EventManager eventManager;
 
     public RoadCrossingEventManager(PetriNetManager petriNetManager) {
-        // All transitions GenVA GenVB AllowFA AllowFB ExitFA ExitFB T1 T2 CheckFA CheckFB
         eventManager = new EventManager(petriNetManager);
-        //eventManager.newEvent("New_Car_A", "GenVA");
-        //eventManager.newEvent("New_Car_B", "GenVB");
         eventManager.newEvent("Green_Light_A", "AllowFA");
         eventManager.newEvent("Green_Light_B", "AllowFB");
         eventManager.newEvent("Car_Before_Crossing_A", "DetectedBeforeCrossingA");
@@ -23,14 +20,6 @@ public class RoadCrossingEventManager {
         eventManager.newEvent("Timer2", "T2");
         eventManager.newEvent("Crossing_Empty_A", "CheckFA");
         eventManager.newEvent("Crossing_Empty_B", "CheckFB");
-    }
-
-    public void triggerNewCar(boolean northSouth) {
-        if (northSouth) {
-            eventManager.fireEvent("New_Car_A");
-        } else {
-            eventManager.fireEvent("New_Car_B");
-        }
     }
 
     public void triggerGreenLight(boolean northSouth) {
