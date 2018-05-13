@@ -4,32 +4,51 @@ import com.heigvd.PetriNetManager.PetriNetManager;
 import com.heigvd.RoadCrossing.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Main {
-    private static void createGUI() {
+    private static void createGUI(RoadCrossing crossing) {
+        ArrayList<JLabel> labels = new ArrayList<>();
         final JFrame frame = new JFrame("RDP GUI");
 
-        JTable table = new JTable(5, 1);
-        JScrollPane scrollPane = new JScrollPane(table);
+        GridBagConstraints c = new GridBagConstraints();
 
-        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().setLayout(new GridLayout(10,10));
 
-
-
-        table.setFillsViewportHeight(true);
-
-        JLabel lblHeading = new JLabel("Stock Quotes");
-        lblHeading.setFont(new Font("Arial",Font.TRUETYPE_FONT,24));
-
-        frame.getContentPane().setLayout(new BorderLayout());
-
-            //frame.getContentPane().add(lblHeading,BorderLayout.PAGE_START);
-        frame.getContentPane().add(scrollPane,BorderLayout.CENTER);
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 10; j++) {
+                JLabel label = new JLabel("Empty");
+                c.gridy = j;
+                c.gridx = i;
+                label.setHorizontalAlignment(JLabel.CENTER);
+                label.setVerticalAlignment(JLabel.CENTER);
+                Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
+                label.setBorder(border);
+                if (i != crossing.getCrossingPosition() && j != crossing.getCrossingPosition()) {
+                    label.setVisible(false);
+                }
+                frame.getContentPane().add(label, c);
+                labels.add(label);
+            }
+        }
+        JLabel label = labels.get((crossing.getCrossingPosition() - 1) * 10 + (crossing.getCrossingPosition() - 1));
+        label.setVisible(true);
+        label.setText("\u21E9");
+        label.setOpaque(true);
+        label.setBackground(Color.RED);
+        label = labels.get((crossing.getCrossingPosition() + 1) * 10 + (crossing.getCrossingPosition() - 1));
+        label.setVisible(true);
+        label.setText("\u21E8");
+        label.setOpaque(true);
+        label.setBackground(Color.RED);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(550, 200);
+        frame.setSize(800, 800);
         frame.setVisible(true);
+        RoadCrossingGUIThread guiupdater = new RoadCrossingGUIThread(crossing, labels, 10);
+        guiupdater.start();
     }
 
     public static void main(String[] args) {
@@ -42,6 +61,11 @@ public class Main {
         /* Timer actions */
         RoadSignalTimerAction NSSignalTimerAction = new RoadSignalTimerAction(evManager, false, true, crossing);
         RoadSignalTimerAction WESignalTimerAction = new RoadSignalTimerAction(evManager, true, false, crossing);
+        /* Create detectors */
+        RoadCrossingDetector detectorBeforeCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, true, true, true, evManager);
+        RoadCrossingDetector detectorBeforeCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, false, true, true, evManager);
+        RoadCrossingDetector detectorInCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), true, false, false, evManager);
+        RoadCrossingDetector detectorInCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), false, false, false, evManager);
         /* Create actions that manage the signal change */
         SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true, null);
         SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false, NSSignalTimerAction);
@@ -63,20 +87,19 @@ public class Main {
         creatorNS.setDebug(true);
         VehicleCreator creatorWE = new VehicleCreator(1, false, crossing, evManager);
         creatorWE.setDebug(true);
-        /* Create detectors */
-        RoadCrossingDetector detectorBeforeCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, true, true, true, evManager);
-        RoadCrossingDetector detectorBeforeCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, false, true, true, evManager);
-        RoadCrossingDetector detectorInCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), true, false, false, evManager);
-        RoadCrossingDetector detectorInCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), false, false, false, evManager);
         /* Start actors */
         petriNet.start();
+        detectorBeforeCrossingNS.setName("detectorBeforeCrossingNS");
         detectorBeforeCrossingNS.start();
+        detectorInCrossingNS.setName("detectorInCrossingNS");
         detectorInCrossingNS.start();
         creatorNS.start();
+        detectorBeforeCrossingWE.setName("detectorBeforeCrossingWE");
         detectorBeforeCrossingWE.start();
+        detectorInCrossingWE.setName("detectorInCrossingWE");
         detectorInCrossingWE.start();
         creatorWE.start();
 
-        Main.createGUI();
+        Main.createGUI(crossing);
     }
 }

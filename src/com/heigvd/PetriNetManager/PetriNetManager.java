@@ -19,8 +19,13 @@ import java.util.Vector;
 public class PetriNetManager extends Thread {
     private boolean debug = true;
 
+    public ArrayList<String> getEventList() {
+        return eventList;
+    }
+
     /* Post and Pre marking.
-     * The number of token in each places */
+
+         * The number of token in each places */
     private int[] markingPost;
     private int[] markingPre;
 

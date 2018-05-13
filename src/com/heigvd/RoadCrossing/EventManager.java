@@ -34,9 +34,25 @@ public class EventManager {
     public void fireEvent(String eventName) {
         for(Event ev : eventList) {
             if (ev.getName().equals(eventName)) {
-                petriNetManager.newEvent(ev.getPetriNetTransition());
+                if (!checkAlreadyExists(eventName)) {
+                    petriNetManager.newEvent(ev.getPetriNetTransition());
+                }
                 break;
             }
         }
+    }
+
+    /**
+     * Check if the event already exists in the list
+     * @param eventName Event name
+     * @return true = already exists, false = doesn't exist
+     */
+    public boolean checkAlreadyExists(String eventName) {
+        for(String event : petriNetManager.getEventList()) {
+            if (event.equals(eventName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
