@@ -2,14 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be381590-f6aa-4627-8f95-e8095cdfba7e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.pdf" afterPath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.synctex.gz" afterPath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.synctex.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/RoadCrossing/RoadCrossingGUI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.form" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.pdf" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.synctex.gz" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.synctex.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/Main.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManager.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/PetriNetManager/PetriNetManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/RoadCrossing/RoadCrossingEventManager.class" afterPath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/RoadCrossing/RoadCrossingEventManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.aux" afterPath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.aux" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.log" afterPath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.tex" afterPath="$PROJECT_DIR$/doc/Rapport/TB_Bise_Leonard_PreEtude.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.aux" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.aux" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.log" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.tex" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.toc" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.toc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Main.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" afterPath="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,53 +38,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="79" column="25" lean-forward="false" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+            <state relative-caret-position="286">
+              <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoadCrossing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="73" column="38" lean-forward="false" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PetriNetManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="88" column="38" lean-forward="false" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2368#2369#0" expanded="true" />
-                <element signature="e#2413#2414#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoadSignalTimerAction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#400#401#0" expanded="true" />
-                <element signature="e#430#431#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#515#516#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,22 +53,39 @@
       <file leaf-file-name="Vehicle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="51" />
+            <state relative-caret-position="466">
+              <caret line="68" column="20" lean-forward="false" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoadSignalTimerTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerTask.java">
+      <file leaf-file-name="SignalStateAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-              <folding>
-                <element signature="e#496#497#0" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="496">
+              <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VehicleCreator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roadCrossingRDP.cfg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,37 +93,35 @@
       <file leaf-file-name="RoadCrossingEventManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="36" />
+            <state relative-caret-position="150">
+              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoadCrossingDetector.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RoadCrossingDetector.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="364">
+              <caret line="68" column="25" lean-forward="true" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+              <folding>
+                <element signature="e#1537#1538#0" expanded="true" />
+                <element signature="e#1573#1574#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoadCrossingGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.java">
+      <file leaf-file-name="RoadSignal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="-40">
+              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+              <folding>
+                <element signature="e#216#217#0" expanded="true" />
+              </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoadCrossingGUI.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -154,6 +142,7 @@
       <find>find</find>
       <find>PetriArc</find>
       <find>triggerCarExitCrossing</find>
+      <find>acci</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,20 +168,21 @@
         <option value="$PROJECT_DIR$/config/transition_without_preincidence.cfg" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignal.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManagerTest.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimer.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerTask.java" />
         <option value="$PROJECT_DIR$/config/roadCrossingRDP.cfg" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerAction.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.form" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java" />
       </list>
     </option>
   </component>
@@ -223,7 +213,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,32 +241,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="heigvd" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PConcPetriNet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PConcPetriNet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="heigvd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RoadCrossing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RoadCrossingGUI" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -397,6 +360,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -843,7 +807,9 @@
       <workItem from="1525281171814" duration="9099000" />
       <workItem from="1525844017434" duration="10897000" />
       <workItem from="1525871508522" duration="27203000" />
-      <workItem from="1526061554246" duration="6504000" />
+      <workItem from="1526061554246" duration="7497000" />
+      <workItem from="1526145916789" duration="1656000" />
+      <workItem from="1526192057502" duration="8743000" />
     </task>
     <servers />
   </component>
@@ -880,7 +846,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67274000" />
+    <option name="totallyTimeSpent" value="78666000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -892,7 +858,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -904,26 +870,26 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26631016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26631016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21733822" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22222222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3197861" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32008594" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -934,7 +900,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="42" />
+      <option name="time" value="49" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -943,32 +909,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriPlace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#283#284#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/small_petrinet1.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1133,10 +1073,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="908" column="32" lean-forward="false" selection-start-line="908" selection-start-column="32" selection-end-line="908" selection-end-column="32" />
-          <folding>
-            <element signature="e#34479#34480#0" expanded="false" />
-            <element signature="e#34520#34521#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1268,78 +1204,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignal.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.form" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/javax/swing/JTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="-726">
+          <caret line="558" column="11" lean-forward="false" selection-start-line="558" selection-start-column="11" selection-end-line="558" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/awt/GridLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="148" column="11" lean-forward="false" selection-start-line="148" selection-start-column="11" selection-end-line="148" selection-end-column="11" />
           <folding>
-            <element signature="e#216#217#0" expanded="false" />
+            <element signature="e#4362#4363#0" expanded="false" />
+            <element signature="e#4394#4395#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/javax/swing/JLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="60" lean-forward="false" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
+        <state relative-caret-position="279">
+          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="51" column="37" lean-forward="true" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="73" column="38" lean-forward="false" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/javax/swing/JTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-726">
-          <caret line="558" column="11" lean-forward="false" selection-start-line="558" selection-start-column="11" selection-end-line="558" selection-end-column="11" />
-          <folding>
-            <element signature="e#20442#20443#0" expanded="false" />
-            <element signature="e#20480#20481#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        <state relative-caret-position="211">
+          <caret line="84" column="29" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="88" column="38" lean-forward="false" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+        <state relative-caret-position="394">
+          <caret line="152" column="35" lean-forward="true" selection-start-line="152" selection-start-column="35" selection-end-line="152" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2368#2369#0" expanded="true" />
@@ -1348,16 +1252,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerAction.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="-40">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#400#401#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1373,36 +1273,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="51" />
+        <state relative-caret-position="466">
+          <caret line="68" column="20" lean-forward="false" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state relative-caret-position="540">
+          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="79" column="25" lean-forward="false" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+        <state relative-caret-position="286">
+          <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/VehicleCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="59" column="34" lean-forward="false" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingEventManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="68" column="25" lean-forward="true" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+          <folding>
+            <element signature="e#1537#1538#0" expanded="true" />
+            <element signature="e#1573#1574#0" expanded="true" />
           </folding>
         </state>
       </provider>

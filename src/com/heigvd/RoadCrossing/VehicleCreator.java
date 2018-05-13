@@ -58,7 +58,6 @@ public class VehicleCreator extends Thread {
                 }
                 /* Start thread */
                 myVehicle.start();
-
             }
         }
     }

@@ -140,8 +140,15 @@ public class PetriNetManager extends Thread {
             this.step();
             if (this.debug) {
                 System.out.println("---------------------------");
+                System.out.println("Marking Post:");
                 for(int j = 0; j < markingPost.length; j++) {
                     System.out.print(markingPost[j] + " ");
+                }
+                System.out.println();
+                System.out.println("---------------------------");
+                System.out.println("Events:");
+                for(String event : eventList) {
+                    System.out.print(event + " ");
                 }
                 System.out.println();
                 System.out.println("---------------------------");
