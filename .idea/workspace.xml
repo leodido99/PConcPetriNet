@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be381590-f6aa-4627-8f95-e8095cdfba7e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.pdf" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.synctex.gz" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.synctex.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.aux" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.aux" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.log" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.tex" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.tex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.toc" afterPath="$PROJECT_DIR$/doc/Rapport/PConc_Bise_Leonard_Rapport.toc" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -817,7 +821,7 @@
       <workItem from="1525871508522" duration="27203000" />
       <workItem from="1526061554246" duration="7497000" />
       <workItem from="1526145916789" duration="1656000" />
-      <workItem from="1526192057502" duration="12244000" />
+      <workItem from="1526192057502" duration="12804000" />
     </task>
     <servers />
   </component>
@@ -854,7 +858,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82167000" />
+    <option name="totallyTimeSpent" value="82727000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -878,7 +882,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26631016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26631016" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
