@@ -128,6 +128,18 @@ public class RoadCrossing {
         }
     }
 
+    /**
+     * Enter the crossing
+     * @param northSouth
+     */
+    public synchronized void enter(boolean northSouth) {
+        if (northSouth) {
+            northSouthRoad[0] = true;
+        } else {
+            westEastRoad[0] = true;
+        }
+    }
+
     public RoadSignal getNorthSouthSignal() {
         return northSouthSignal;
     }

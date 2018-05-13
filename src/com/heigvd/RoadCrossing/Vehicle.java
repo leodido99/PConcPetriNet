@@ -30,6 +30,7 @@ public class Vehicle extends Thread {
         this.northSouthRoad = northSouthRoad;
         this.evManager = evManager;
         this.delay = delay;
+        crossing.enter(this.northSouthRoad);
     }
 
     /**
