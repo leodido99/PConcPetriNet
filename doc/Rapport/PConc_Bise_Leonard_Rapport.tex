@@ -192,7 +192,8 @@ Le projet de gestion de carrefour demande la création de différents acteurs qu
 \item Vehicle : Définit le comportement d'un véhicule, après avoir été créé il commence à avancer régulièrement le long de son flux en utilisant la grille définie par la classe RoadCrossing. Juste avant de rentrer dans le carrefour la couleur du feu sera vérifiée pour voir si il est possible d'avancer. Lorsqu'elle arrive à la fin de la route, le véhicule a terminé sa vie et est détruit.
 \item VehicleCreator : Ce Thread est responsable de la création de véhicule dans un certain flux de manière régulière
 \item RoadSignalTimerAction : Cette classe représente l'action a effectuer lorsqu'un véhicule arrive devant le carrefour et que sont feu est rouge. Dans ce cas, un timer va être enclenché au terme duquel la classe RoadSignalTimerTask sera exécutée
-\item RoadSignalTimerTask La tâche liée à RoadSignalTimerAction. Elle déclenche un événement qui permet au système de mettre le feu du flux qui est actif au rouge et de passer celui de l'autre flux au vert
+\item RoadSignalTimerTask: La tâche liée à RoadSignalTimerAction. Elle déclenche un événement qui permet au système de mettre le feu du flux qui est actif au rouge et de passer celui de l'autre flux au vert
+\item RoadCrossingGUIThread: La tâche qui est responsable de rafraîchir les informations affiché sur l'interface graphique
 \end{itemize}
 
 \chapter{Les échanges entre acteurs}
@@ -210,7 +211,9 @@ La classe RoadCrossing qui gère les deux routes, est aussi responsable de l'ins
 
 \chapter{Conclusion}
 
-J'ai eu beaucoup de plaisir à travailler sur ce projet, malheureusement du au manque de temps la structure de l'application n'est pas aussi bien pensée que je l'aurais voulu. En effet les interactions entre les différents acteurs peut certainement être mieux réalisé.
+J'ai eu beaucoup de plaisir à travailler sur ce projet, malheureusement du au manque de temps la structure de l'application n'est pas aussi bien pensée que je l'aurais voulu. En effet les interactions entre les différents acteurs peut certainement être mieux réalisées. De plus, le code de certaine méthode est clairement brouillon et je l'aurais volontiers réécris. La gestion des détecteurs peut être mieux réalisé
+
+gestion Thread peut mieux faire avec detecteur avant carrefour par exemple.
 
 
 %%%%%%%%%%%%%%%%%%%%%% Bibliographie %%%%%%%%%%%%%%%%%%%%%%%

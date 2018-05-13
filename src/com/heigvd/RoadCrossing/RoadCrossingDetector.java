@@ -61,6 +61,7 @@ public class RoadCrossingDetector extends Thread {
                         this.evManager.triggerCarBeforeCrossing(this.northSouth);
                     } else {
                         this.evManager.triggerCrossingEmpty(this.northSouth);
+                        this.enable = false;
                     }
                 }
             } else {

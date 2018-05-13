@@ -19,7 +19,7 @@ public class Main {
 
         for(int i = 0; i < 10; i++) {
             for(int j = 0; j < 10; j++) {
-                JLabel label = new JLabel("Empty");
+                JLabel label = new JLabel("");
                 c.gridy = j;
                 c.gridx = i;
                 label.setHorizontalAlignment(JLabel.CENTER);
@@ -64,13 +64,13 @@ public class Main {
         /* Create detectors */
         RoadCrossingDetector detectorBeforeCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, true, true, true, evManager);
         RoadCrossingDetector detectorBeforeCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition() - 1, false, true, true, evManager);
-        RoadCrossingDetector detectorInCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), true, false, false, evManager);
-        RoadCrossingDetector detectorInCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), false, false, false, evManager);
+        //RoadCrossingDetector detectorInCrossingNS = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), true, false, false, evManager);
+        //RoadCrossingDetector detectorInCrossingWE = new RoadCrossingDetector(crossing, crossing.getCrossingPosition(), false, false, false, evManager);
         /* Create actions that manage the signal change */
-        SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true, null);
-        SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false, NSSignalTimerAction);
-        SignalStateAction WESignalGreenAction = new SignalStateAction(crossing.getSignal(false), true, null);
-        SignalStateAction WESignalRedAction = new SignalStateAction(crossing.getSignal(false), false, WESignalTimerAction);
+        SignalStateAction NSSignalGreenAction = new SignalStateAction(crossing.getSignal(true), true, null, null, null, true);
+        SignalStateAction NSSignalRedAction = new SignalStateAction(crossing.getSignal(true), false, NSSignalTimerAction, crossing, evManager, true);
+        SignalStateAction WESignalGreenAction = new SignalStateAction(crossing.getSignal(false), true, null, null, null, false);
+        SignalStateAction WESignalRedAction = new SignalStateAction(crossing.getSignal(false), false, WESignalTimerAction, crossing, evManager, false);
         /* Add actions to Petri Net Places */
         petriNet.setPlaceAction("FABlock", NSSignalRedAction);
         petriNet.setPlaceAction("FAAllow", NSSignalGreenAction);
@@ -91,13 +91,13 @@ public class Main {
         petriNet.start();
         detectorBeforeCrossingNS.setName("detectorBeforeCrossingNS");
         detectorBeforeCrossingNS.start();
-        detectorInCrossingNS.setName("detectorInCrossingNS");
-        detectorInCrossingNS.start();
+        //detectorInCrossingNS.setName("detectorInCrossingNS");
+        //detectorInCrossingNS.start();
         creatorNS.start();
         detectorBeforeCrossingWE.setName("detectorBeforeCrossingWE");
         detectorBeforeCrossingWE.start();
-        detectorInCrossingWE.setName("detectorInCrossingWE");
-        detectorInCrossingWE.start();
+        //detectorInCrossingWE.setName("detectorInCrossingWE");
+        //detectorInCrossingWE.start();
         creatorWE.start();
 
         Main.createGUI(crossing);

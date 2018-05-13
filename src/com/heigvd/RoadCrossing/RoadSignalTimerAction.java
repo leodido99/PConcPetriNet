@@ -39,7 +39,6 @@ public class RoadSignalTimerAction extends Timer implements PetriPlaceInterface 
     public void execute(PetriPlace place) {
         /* Only start timer if signal is red */
         if (enabled && !crossing.getSignal(this.northSouth).isGreen()) {
-            System.out.println("Schedule timer " + this.timer1);
             this.schedule(new RoadSignalTimerTask(this.timer1, evManager), 5000);
             this.enabled = false;
         }

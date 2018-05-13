@@ -26,15 +26,15 @@ public class RoadCrossingGUIThread extends Thread {
         while(true) {
             for(int i = 0; i < this.nbCol; i++) {
                 JLabel label = getLabel(crossing.getCrossingPosition(), i);
-                label.setText(crossing.getPosition(true, i) ? "Car" : "Empty");
+                label.setText(crossing.getPosition(true, i) ? "Car" : "");
                 label = getLabel(i, crossing.getCrossingPosition());
-                label.setText(crossing.getPosition(false, i) ? "Car" : "Empty");
+                label.setText(crossing.getPosition(false, i) ? "Car" : "");
             }
             JLabel label = getLabel(crossing.getCrossingPosition(), crossing.getCrossingPosition());
             if (crossing.getPosition(true, crossing.getCrossingPosition()) || crossing.getPosition(false, crossing.getCrossingPosition())) {
                 label.setText("Car");
             } else {
-                label.setText("Empty");
+                label.setText("");
             }
             label = getLabel(crossing.getCrossingPosition() - 1, crossing.getCrossingPosition() - 1);
             if (crossing.getSignal(true).isGreen()) {

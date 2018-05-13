@@ -151,12 +151,6 @@ public class PetriNetManager extends Thread {
                 }
                 System.out.println();
                 System.out.println("---------------------------");
-                System.out.println("Events:");
-                for(String event : eventList) {
-                    System.out.print(event + " ");
-                }
-                System.out.println();
-                System.out.println("---------------------------");
             }
         }
     }

@@ -39,8 +39,9 @@ public class Vehicle extends Thread {
         System.out.println("Vehicle " + this.ID + " created");
         /* Loop as long as the vehicle is on the road */
         while(crossingPosition < crossing.getRoadLength() - 1) {
+            synchronized (crossing) {
             /* Check if next position is free */
-            if (crossing.getPosition(this.northSouthRoad, this.crossingPosition + 1) == false) {
+                if (crossing.getPosition(this.northSouthRoad, this.crossingPosition + 1) == false) {
                 /* If next position is the crossing, we have to check the signal */
                     if (crossing.getCrossingPosition() == this.crossingPosition + 1) {
                     /* Only move if the signal is green */
@@ -66,8 +67,9 @@ public class Vehicle extends Thread {
                     /* The car left the crossing */
                         evManager.triggerCarExitCrossing(this.northSouthRoad);
                     }
-                    System.out.println("Vehicle " + this.ID + " position = " + this.crossingPosition);
+                    //System.out.println("Vehicle " + this.ID + " position = " + this.crossingPosition);
                 }
+            }
             try {
                 Thread.sleep(this.delay.intValue());
             } catch (InterruptedException e) {
