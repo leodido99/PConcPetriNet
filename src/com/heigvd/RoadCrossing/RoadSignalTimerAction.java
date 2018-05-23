@@ -10,7 +10,7 @@ import java.util.Timer;
  */
 public class RoadSignalTimerAction extends Timer implements PetriPlaceInterface {
     private boolean enabled;
-    private RoadCrossingEventManager evManager;
+    private RoadCrossingManager crossingManager;
 
     public boolean isEnabled() {
         return enabled;
@@ -24,9 +24,9 @@ public class RoadSignalTimerAction extends Timer implements PetriPlaceInterface 
     private RoadCrossing crossing;
     private boolean northSouth;
 
-    public RoadSignalTimerAction(RoadCrossingEventManager evManager, boolean timer1, boolean northSouth, RoadCrossing crossing) {
+    public RoadSignalTimerAction(RoadCrossingManager crossingManager, boolean timer1, boolean northSouth, RoadCrossing crossing) {
         this.timer1 = timer1;
-        this.evManager = evManager;
+        this.crossingManager = crossingManager;
         this.crossing = crossing;
         this.northSouth = northSouth;
         this.enabled = true;
@@ -38,9 +38,9 @@ public class RoadSignalTimerAction extends Timer implements PetriPlaceInterface 
      */
     public void execute(PetriPlace place) {
         /* Only start timer if signal is red */
-        if (enabled && !crossing.getSignal(this.northSouth).isGreen()) {
+        /*if (enabled && !crossing.getSignal(this.northSouth).isGreen()) {
             this.schedule(new RoadSignalTimerTask(this.timer1, evManager), 5000);
             this.enabled = false;
-        }
+        }*/
     }
 }

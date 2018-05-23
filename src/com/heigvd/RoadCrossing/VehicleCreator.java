@@ -7,6 +7,17 @@ import com.heigvd.PetriNetManager.PetriNetManager;
  */
 public class VehicleCreator extends Thread {
     private boolean debug;
+    private int creatorID;
+    private int vehicleCounter;
+    private boolean northSouth;
+    private RoadCrossingManager crossingManager;
+
+    public VehicleCreator(RoadCrossingManager crossingManager, int ID, boolean northSouth) {
+        creatorID = ID;
+        vehicleCounter = 0;
+        this.northSouth = northSouth;
+        this.crossingManager = crossingManager;
+    }
 
     public boolean isDebug() {
         return debug;
@@ -16,22 +27,12 @@ public class VehicleCreator extends Thread {
         this.debug = debug;
     }
 
-    private int creatorID;
-    private int vehicleCounter;
-    private boolean northSouth;
-    private RoadCrossing crossing;
-    private RoadCrossingEventManager evManager;
-
-    public VehicleCreator(int ID, boolean northSouth, RoadCrossing crossing, RoadCrossingEventManager evManager) {
-        creatorID = ID;
-        vehicleCounter = 0;
-        this.northSouth = northSouth;
-        this.crossing = crossing;
-        this.evManager = evManager;
-    }
-
+    /**
+     *
+     * @return
+     */
     private boolean canCreateVehicle() {
-        if (this.crossing.getPosition(this.northSouth, 0)) {
+        if (this.crossingManager.getCrossing().getPosition(this.northSouth, 0)) {
             return false;
         }
         return true;
@@ -52,7 +53,7 @@ public class VehicleCreator extends Thread {
             if (canCreateVehicle()) {
                 vehicleCounter++;
                 /* Create new vehicle */
-                Vehicle myVehicle = new Vehicle(creatorID << 8 | vehicleCounter, 0, crossing, northSouth, evManager, (Math.random() * 2 + 1) * 1000);
+                Vehicle myVehicle = new Vehicle(crossingManager, creatorID << 8 | vehicleCounter, 0, northSouth, (Math.random() * 2 + 1) * 1000);
                 if (this.debug) {
                     myVehicle.setDebug(true);
                 }

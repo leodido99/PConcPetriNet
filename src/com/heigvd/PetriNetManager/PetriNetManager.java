@@ -90,8 +90,8 @@ public class PetriNetManager extends Thread {
      * Fire a transition
      * @param transitionName Transition to fire
      */
-    public void newEvent(String transitionName) {
-        eventList.add(transitionName);
+    public void setEventState(String transitionName, boolean state) {
+        transitions.get(findTransitionIndex(transitionName)).setFired(state);
     }
 
     /**
@@ -309,12 +309,13 @@ public class PetriNetManager extends Thread {
      * @return true = event happened, false = event didn't happen
      */
     private boolean TransitionEventHappened(String transitionName) {
-        if (eventList.contains(transitions.get(findTransitionIndex(transitionName)).getName())) {
+        return transitions.get(findTransitionIndex(transitionName)).isFired();
+        /*if (eventList.contains(transitions.get(findTransitionIndex(transitionName)).getName())) {
             eventList.remove(transitions.get(findTransitionIndex(transitionName)).getName());
             return true;
         } else {
             return false;
-        }
+        }*/
     }
 
     public boolean isDebug() {

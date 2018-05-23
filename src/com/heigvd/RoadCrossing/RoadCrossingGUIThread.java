@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * Created by leonard.bise on 12.05.18.
  */
 public class RoadCrossingGUIThread extends Thread {
-    private RoadCrossing crossing;
+    private RoadCrossingManager crossingManager;
     private ArrayList<JLabel> labels;
     private int nbCol;
 
-    public RoadCrossingGUIThread(RoadCrossing crossing, ArrayList<JLabel> labels, int nbCol) {
-        this.crossing = crossing;
+    public RoadCrossingGUIThread(RoadCrossingManager crossingManager, ArrayList<JLabel> labels, int nbCol) {
+        this.crossingManager = crossingManager;
         this.labels = labels;
         this.nbCol = nbCol;
     }
@@ -25,25 +25,25 @@ public class RoadCrossingGUIThread extends Thread {
     public void run() {
         while(true) {
             for(int i = 0; i < this.nbCol; i++) {
-                JLabel label = getLabel(crossing.getCrossingPosition(), i);
-                label.setText(crossing.getPosition(true, i) ? "Car" : "");
-                label = getLabel(i, crossing.getCrossingPosition());
-                label.setText(crossing.getPosition(false, i) ? "Car" : "");
+                JLabel label = getLabel(crossingManager.getRoadCrossingPosition(), i);
+                label.setText(crossingManager.getCrossing().getPosition(true, i) ? "Car" : "");
+                label = getLabel(i, crossingManager.getRoadCrossingPosition());
+                label.setText(crossingManager.getCrossing().getPosition(false, i) ? "Car" : "");
             }
-            JLabel label = getLabel(crossing.getCrossingPosition(), crossing.getCrossingPosition());
-            if (crossing.getPosition(true, crossing.getCrossingPosition()) || crossing.getPosition(false, crossing.getCrossingPosition())) {
+            JLabel label = getLabel(crossingManager.getRoadCrossingPosition(), crossingManager.getRoadCrossingPosition());
+            if (crossingManager.getCrossing().getPosition(true, crossingManager.getRoadCrossingPosition()) || crossingManager.getCrossing().getPosition(false, crossingManager.getRoadCrossingPosition())) {
                 label.setText("Car");
             } else {
                 label.setText("");
             }
-            label = getLabel(crossing.getCrossingPosition() - 1, crossing.getCrossingPosition() - 1);
-            if (crossing.getSignal(true).isGreen()) {
+            label = getLabel(crossingManager.getRoadCrossingPosition() - 1, crossingManager.getRoadCrossingPosition() - 1);
+            if (crossingManager.getNorthSouthSignal().isGreen()) {
                 label.setBackground(Color.GREEN);
             } else {
                 label.setBackground(Color.RED);
             }
-            label = getLabel(crossing.getCrossingPosition() - 1, crossing.getCrossingPosition() + 1);
-            if (crossing.getSignal(false).isGreen()) {
+            label = getLabel(crossingManager.getRoadCrossingPosition() - 1, crossingManager.getRoadCrossingPosition() + 1);
+            if (crossingManager.getWestEastSignal().isGreen()) {
                 label.setBackground(Color.GREEN);
             } else {
                 label.setBackground(Color.RED);

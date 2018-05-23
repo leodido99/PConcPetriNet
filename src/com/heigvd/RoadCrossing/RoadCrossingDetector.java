@@ -1,72 +1,84 @@
 package com.heigvd.RoadCrossing;
 
-import com.heigvd.PetriNetManager.PetriNetManager;
-
 /**
  * Created by leonard.bise on 09.05.18.
  * Class for a Detector placed on a road crossing
  */
 public class RoadCrossingDetector extends Thread {
-    private boolean enable = true;
-    private RoadCrossing crossing;
+    private RoadCrossingManager roadCrossingManager;
+    private String transitionToFire;
     private int detectorPosition;
-    private boolean northSouth;
-    private RoadCrossingEventManager evManager;
-    private boolean beforeCrossing;
+    private boolean[] road;
+    private int nbSlotsToCheck;
     private boolean positionExpectedState;
-    private boolean fired;
+    private boolean debug;
+    private boolean previousState;
 
     /**
-     * Constructor of the detector
-     * @param crossing Crossing to verify
-     * @param detectorPosition Position on the crossing
+     * Create a new Road Crossing Detector
+     * @param roadCrossingManager Road Crossing Manager
+     * @param road The road to check
+     * @param detectorPosition The position of the detector on the road
+     * @param nbPositionToCheck The number of position to check start from the detector position
+     * @param transitionToFire The petri transition to fire
+     * @param positionExpectedState The expected state of all the position
      */
-    public RoadCrossingDetector(RoadCrossing crossing, int detectorPosition, boolean northSouth, boolean beforeCrossing, boolean positionExpectedState, RoadCrossingEventManager evManager) {
-        this.crossing = crossing;
+    public RoadCrossingDetector(RoadCrossingManager roadCrossingManager, boolean[] road, int detectorPosition, int nbPositionToCheck, String transitionToFire, boolean positionExpectedState) {
+        this.setDaemon(true);
+        this.roadCrossingManager = roadCrossingManager;
         this.detectorPosition = detectorPosition;
-        this.northSouth = northSouth;
-        this.evManager = evManager;
-        this.beforeCrossing = beforeCrossing;
+        this.road = road;
+        this.nbSlotsToCheck = nbPositionToCheck;
         this.positionExpectedState = positionExpectedState;
-        this.fired = false;
+        this.transitionToFire = transitionToFire;
+        this.previousState = false;
     }
 
     /**
-     * Returns whether the detector is enabled
-     * @return detector state
+     * Returns if the state of the road is as expected or false otherwise
+     * @return true = all positions are equal to the expected state, false = not all position are as expected
      */
-    public boolean isEnable() {
-        return enable;
-    }
-
-    /**
-     * Sets the state of the detector
-     * @param enable State of the detector
-     */
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    private boolean isState() {
+        for(int i = 0; i < this.nbSlotsToCheck; i++) {
+            if (road[this.detectorPosition + i] != positionExpectedState) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * Job of the Thread
-     * Periodically checks if the position on the crossing is filled with a car
+     * Periodically checks the crossing and updates the event state
      */
     public void run() {
-        while(enable) {
-            if (crossing.getPosition(this.northSouth, this.detectorPosition) == this.positionExpectedState) {
-                if (this.fired == false) {
-                    this.fired = true;
-                    /* Fire Event */
-                    if (this.beforeCrossing) {
-                        this.evManager.triggerCarBeforeCrossing(this.northSouth);
-                    } else {
-                        this.evManager.triggerCrossingEmpty(this.northSouth);
-                        this.enable = false;
-                    }
+        while(true) {
+            if (isState()) {
+                roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, true);
+                if (this.debug && this.previousState != true) {
+                    System.out.println(this.getName() + " - Event " + this.transitionToFire + " true");
                 }
+                this.previousState = true;
             } else {
-                this.fired = false;
+                roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, false);
+                if (this.debug && this.previousState != false) {
+                    System.out.println(this.getName() + " - Event " + this.transitionToFire + " false");
+                }
+                this.previousState = false;
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Sets debug mode
+     * @param debug true = debug mode on; false = debug mode off
+     */
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 }

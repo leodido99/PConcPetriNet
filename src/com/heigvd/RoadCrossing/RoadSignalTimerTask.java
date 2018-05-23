@@ -7,17 +7,18 @@ import java.util.TimerTask;
  */
 public class RoadSignalTimerTask extends TimerTask {
     private boolean timer1;
-    private RoadCrossingEventManager evManager;
+    private RoadCrossingManager crossingManager;
 
-    public RoadSignalTimerTask(boolean timer1, RoadCrossingEventManager evManager) {
+    public RoadSignalTimerTask(boolean timer1, RoadCrossingManager crossingManager) {
         this.timer1 = timer1;
-        this.evManager = evManager;
+        this.crossingManager = crossingManager;
     }
 
     /**
      * When the timer elapses the timer event is triggered
      */
     public void run() {
-        evManager.triggerTimer(this.timer1);
+
+        //crossingManager.triggerTimer(this.timer1);
     }
 }

@@ -6,19 +6,18 @@ package com.heigvd.RoadCrossing;
 public class RoadSignal {
     private boolean green;
     private String name;
+    private int signalPosition;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    /**
+     * Create a new road signal
+     * @param name Name of the signal
+     * @param signalPosition The position of the signal on the crossing
+     */
+    public RoadSignal(String name, int signalPosition) {
         this.name = name;
-    }
-
-    public RoadSignal(String name) {
-        this.name = name;
-
         green = false;
+        this.signalPosition = signalPosition;
+
     }
 
     /**
@@ -46,5 +45,37 @@ public class RoadSignal {
      */
     public void setGreen(boolean green) {
         this.green = green;
+    }
+
+    /**
+     * Get name of signal
+     * @return Signal name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set name of signal
+     * @param name Signal name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get signal position
+     * @return Signal position on the crossing
+     */
+    public int getSignalPosition() {
+        return signalPosition;
+    }
+
+    /**
+     * Set the signal position
+     * @param signalPosition Signal position on the crossing
+     */
+    public void setSignalPosition(int signalPosition) {
+        this.signalPosition = signalPosition;
     }
 }

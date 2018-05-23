@@ -5,10 +5,7 @@ package com.heigvd.RoadCrossing;
  */
 public class RoadCrossing {
     private boolean[] northSouthRoad;
-    private RoadSignal northSouthSignal;
     private boolean[] westEastRoad;
-    private RoadSignal westEastSignal;
-    private int crossingCenterPosition;
 
     /**
      * Initialize a road
@@ -21,36 +18,23 @@ public class RoadCrossing {
     }
 
     /**
-     * Returns the signal of the specified road
-     * @param northSouth
-     * @return
-     */
-    public RoadSignal getSignal(boolean northSouth) {
-        if (northSouth) {
-            return northSouthSignal;
-        } else {
-            return westEastSignal;
-        }
-    }
-
-    /**
      * Creates a new road crossing
      * @param roadLength Length of the roads
      */
-    public RoadCrossing(int roadLength) {
-        northSouthRoad = new boolean[roadLength];
-        westEastRoad = new boolean[roadLength];
-        crossingCenterPosition = roadLength / 2;
+    /**
+     * Creates a new road crossing
+     * @param roadLengthBeforeCrossing Length of the roads before and after the crossing
+     */
+    public RoadCrossing(int roadLengthBeforeCrossing) {
+        northSouthRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
+        westEastRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
         initRoad(northSouthRoad);
         initRoad(westEastRoad);
-        northSouthSignal = new RoadSignal("northSouthSignal");
-        westEastSignal = new RoadSignal("westEastSignal");
-
     }
 
     /**
-     * Returns the length of the roads
-     * @return Road length
+     * Returns the total length of the roads
+     * @return Total road length
      */
     public int getRoadLength() {
         return northSouthRoad.length;
@@ -71,16 +55,9 @@ public class RoadCrossing {
     }
 
     /**
-     * Returns the position at which is the crossing
-     * @return Crossing position
-     */
-    public synchronized int getCrossingPosition() {
-        return this.crossingCenterPosition;
-    }
-
-    /**
-     * Move one place in the North South road
-     * @param position New position
+     * Move one place forward in the road
+     * @param northSouth The road on which to move
+     * @param position The new position
      */
     public synchronized void move(boolean northSouth, int position) {
         if (northSouth) {
@@ -88,19 +65,11 @@ public class RoadCrossing {
                 /* Next position is already filled */
                 throw new RuntimeException();
             }
-            if (getCrossingPosition() == position && westEastRoad[position]) {
-                /* Accident! */
-                throw new RuntimeException();
-            }
             northSouthRoad[position] = true;
             northSouthRoad[position - 1] = false;
         } else {
             if (westEastRoad[position]) {
                 /* Next position is already filled */
-                throw new RuntimeException();
-            }
-            if (getCrossingPosition() == position && northSouthRoad[position]) {
-                /* Accident! */
                 throw new RuntimeException();
             }
             westEastRoad[position] = true;
@@ -140,19 +109,35 @@ public class RoadCrossing {
         }
     }
 
-    public RoadSignal getNorthSouthSignal() {
-        return northSouthSignal;
+    /**
+     * Get the North South Road
+     * @return The north south road
+     */
+    public boolean[] getNorthSouthRoad() {
+        return northSouthRoad;
     }
 
-    public void setNorthSouthSignal(RoadSignal northSouthSignal) {
-        this.northSouthSignal = northSouthSignal;
+    /**
+     * Set the North South Road
+     * @param northSouthRoad The north south road
+     */
+    public void setNorthSouthRoad(boolean[] northSouthRoad) {
+        this.northSouthRoad = northSouthRoad;
     }
 
-    public RoadSignal getWestEastSignal() {
-        return westEastSignal;
+    /**
+     * Get the West East Road
+     * @return The west east road
+     */
+    public boolean[] getWestEastRoad() {
+        return westEastRoad;
     }
 
-    public void setWestEastSignal(RoadSignal westEastSignal) {
-        this.westEastSignal = westEastSignal;
+    /**
+     * Set the West East Road
+     * @param westEastRoad The west east road
+     */
+    public void setWestEastRoad(boolean[] westEastRoad) {
+        this.westEastRoad = westEastRoad;
     }
 }

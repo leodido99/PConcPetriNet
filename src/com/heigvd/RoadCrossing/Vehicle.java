@@ -1,36 +1,68 @@
 package com.heigvd.RoadCrossing;
 
-import org.omg.SendingContext.RunTime;
-
 /**
  * Created by leonard.bise on 09.05.18.
  */
 public class Vehicle extends Thread {
     private boolean debug;
-
-    public boolean isDebug() {
-        return debug;
-    }
-
-    public void setDebug(boolean debug) {
-        this.debug = debug;
-    }
-
     private Double delay;
     private int ID;
     private int crossingPosition;
     private boolean northSouthRoad;
-    private RoadCrossing crossing;
-    private RoadCrossingEventManager evManager;
+    private RoadCrossingManager crossingManager;
 
-    public Vehicle(int ID, int crossingPosition, RoadCrossing crossing, boolean northSouthRoad, RoadCrossingEventManager evManager, Double delay) {
+    /**
+     * Create a new vehicle
+     * @param crossingManager The crossing manager instance
+     * @param ID The ID of the vehicle
+     * @param crossingPosition The starting position (index) of the vehicle
+     * @param northSouthRoad If the vehicle is on the north-south or west-east road
+     * @param delay Delay between each thread iteration
+     */
+    public Vehicle(RoadCrossingManager crossingManager, int ID, int crossingPosition, boolean northSouthRoad, Double delay) {
         this.ID = ID;
         this.crossingPosition = crossingPosition;
-        this.crossing = crossing;
+        this.crossingManager = crossingManager;
         this.northSouthRoad = northSouthRoad;
-        this.evManager = evManager;
         this.delay = delay;
-        crossing.enter(this.northSouthRoad);
+        /* Vehicle enters the crossing */
+        this.crossingManager.getCrossing().enter(this.northSouthRoad);
+    }
+
+    /**
+     * Sets the debug mode
+     * @param debug true = enable, false = disable
+     */
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+
+    /**
+     * Returns the signal on the road the vehicle is moving
+     * @return The road signal
+     */
+    private RoadSignal getSignal() {
+        if (this.northSouthRoad) {
+            return this.crossingManager.getNorthSouthSignal();
+        } else {
+            return this.crossingManager.getWestEastSignal();
+        }
+    }
+
+    /**
+     * Returns whether the vehicle can advance
+     * @return true = can advance, false = cannot advance
+     */
+    private boolean canAdvance() {
+        /* Check if next position is occupied */
+        if (this.crossingManager.getCrossing().getPosition(this.northSouthRoad, this.crossingPosition + 1) == true) {
+            return false;
+        }
+        /* If a signal is present, check its red */
+        if (this.getSignal().getSignalPosition() == this.crossingPosition && this.getSignal().isGreen() == false) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -39,36 +71,21 @@ public class Vehicle extends Thread {
     public void run() {
         System.out.println("Vehicle " + this.ID + " created");
         /* Loop as long as the vehicle is on the road */
-        while(crossingPosition < crossing.getRoadLength() - 1) {
-            synchronized (crossing) {
-            /* Check if next position is free */
-                if (crossing.getPosition(this.northSouthRoad, this.crossingPosition + 1) == false) {
-                /* If next position is the crossing, we have to check the signal */
-                    if (crossing.getCrossingPosition() == this.crossingPosition + 1) {
-                    /* Only move if the signal is green */
-                        if (crossing.getSignal(this.northSouthRoad).isGreen()) {
-                            this.crossingPosition++;
-                            try {
-                                crossing.move(this.northSouthRoad, this.crossingPosition);
-                            } catch (RuntimeException e) {
-                                System.out.println("Vehicle " + this.ID + " was in an accident");
-                                throw new RuntimeException();
-                            }
-                            if (debug) {
-                                System.out.println("Vehicle " + this.ID + " entered the crossing");
-                            }
-                            evManager.triggerGreenLight(this.northSouthRoad);
-                        }
-                    } else {
-                    /* Next spot is free */
-                        this.crossingPosition++;
-                        crossing.move(this.northSouthRoad, this.crossingPosition);
+        while(crossingPosition < this.crossingManager.getCrossing().getRoadLength() - 1) {
+            synchronized (this.crossingManager.getCrossing()) {
+                /* Check if the vehicle can advance (i.e. if there isn't any car in front and if a signal is present
+                   that it is green */
+                if (this.canAdvance()) {
+                    this.crossingPosition++;
+                    try {
+                        this.crossingManager.getCrossing().move(this.northSouthRoad,this.crossingPosition);
+                    } catch (RuntimeException e) {
+                        System.out.println("Vehicle " + this.ID + " was in an accident");
+                        throw new RuntimeException();
                     }
-                    if (this.crossingPosition == crossing.getCrossingPosition() + 1) {
-                    /* The car left the crossing */
-                        evManager.triggerCarExitCrossing(this.northSouthRoad);
+                    if (debug && this.crossingManager.getRoadCrossingPosition() == this.crossingPosition) {
+                        System.out.println("Vehicle " + this.ID + " entered the crossing");
                     }
-                    //System.out.println("Vehicle " + this.ID + " position = " + this.crossingPosition);
                 }
             }
             try {
@@ -77,7 +94,8 @@ public class Vehicle extends Thread {
                 e.printStackTrace();
             }
         }
-        crossing.leave(this.northSouthRoad);
+        /* The vehicle leaves the crossing */
+        this.crossingManager.getCrossing().leave(this.northSouthRoad);
         System.out.println("Vehicle " + this.ID + " reached the end of the road");
     }
 }

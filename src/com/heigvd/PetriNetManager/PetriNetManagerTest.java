@@ -90,7 +90,7 @@ class PetriNetManagerTest {
         actionHandler.getExecutedActions().clear();
         /* --- Step 2 --- */
         /* Fire transition */
-        petriNet.newEvent("T1");
+        petriNet.setEventState("T1", true);
         step = 2;
         System.out.println("--- Step " + step + " ---");
         petriNet.step();
@@ -122,7 +122,7 @@ class PetriNetManagerTest {
         step = 4;
         System.out.println("--- Step " + step + " ---");
         /* Fire transition */
-        petriNet.newEvent("T23");
+        petriNet.setEventState("T23", true);
         petriNet.step();
         this.printMatrix("Pre-Incidence Matrix after step " + step, petriNet.getPreIncidenceMatrix());
         this.printMatrix("Post-Incidence Matrix after step " + step, petriNet.getPostIncidenceMatrix());
@@ -152,8 +152,8 @@ class PetriNetManagerTest {
         /* --- Step 6 --- */
         /* Verify only one consumption when two transition enabled on same place */
         /* Fire transition */
-        petriNet.newEvent("T41");
-        petriNet.newEvent("T42");
+        petriNet.setEventState("T41", true);
+        petriNet.setEventState("T42", true);
         step = 6;
         System.out.println("--- Step " + step + " ---");
         petriNet.step();
@@ -208,7 +208,7 @@ class PetriNetManagerTest {
         /* Perform a step */
         int step = 1;
         System.out.println("--- Step " + step + " ---");
-        petriNet.newEvent("T1");
+        petriNet.setEventState("T1", true);
         petriNet.step();
         this.printVector("Step Marking", petriNet.getMarkingPost());
         assertArrayEquals(expectedStep1Marking, petriNet.getMarkingPost());
