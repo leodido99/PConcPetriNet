@@ -25,24 +25,24 @@ public class RoadCrossingGUIThread extends Thread {
     public void run() {
         while(true) {
             for(int i = 0; i < this.nbCol; i++) {
-                JLabel label = getLabel(crossingManager.getRoadCrossingPosition(), i);
+                JLabel label = getLabel(crossingManager.getRoadCrossingIndex(), i);
                 label.setText(crossingManager.getCrossing().getPosition(true, i) ? "Car" : "");
-                label = getLabel(i, crossingManager.getRoadCrossingPosition());
+                label = getLabel(i, crossingManager.getRoadCrossingIndex());
                 label.setText(crossingManager.getCrossing().getPosition(false, i) ? "Car" : "");
             }
-            JLabel label = getLabel(crossingManager.getRoadCrossingPosition(), crossingManager.getRoadCrossingPosition());
-            if (crossingManager.getCrossing().getPosition(true, crossingManager.getRoadCrossingPosition()) || crossingManager.getCrossing().getPosition(false, crossingManager.getRoadCrossingPosition())) {
+            JLabel label = getLabel(crossingManager.getRoadCrossingIndex(), crossingManager.getRoadCrossingIndex());
+            if (crossingManager.getCrossing().getPosition(true, crossingManager.getRoadCrossingIndex()) || crossingManager.getCrossing().getPosition(false, crossingManager.getRoadCrossingIndex())) {
                 label.setText("Car");
             } else {
                 label.setText("");
             }
-            label = getLabel(crossingManager.getRoadCrossingPosition() - 1, crossingManager.getRoadCrossingPosition() - 1);
+            label = getLabel(crossingManager.getRoadCrossingIndex() - 1, crossingManager.getRoadCrossingIndex() - 1);
             if (crossingManager.getNorthSouthSignal().isGreen()) {
                 label.setBackground(Color.GREEN);
             } else {
                 label.setBackground(Color.RED);
             }
-            label = getLabel(crossingManager.getRoadCrossingPosition() - 1, crossingManager.getRoadCrossingPosition() + 1);
+            label = getLabel(crossingManager.getRoadCrossingIndex() - 1, crossingManager.getRoadCrossingIndex() + 1);
             if (crossingManager.getWestEastSignal().isGreen()) {
                 label.setBackground(Color.GREEN);
             } else {

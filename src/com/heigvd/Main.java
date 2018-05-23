@@ -1,6 +1,5 @@
 package com.heigvd;
 
-import com.heigvd.PetriNetManager.PetriNetManager;
 import com.heigvd.RoadCrossing.*;
 
 import javax.swing.*;
@@ -26,19 +25,19 @@ public class Main {
                 label.setVerticalAlignment(JLabel.CENTER);
                 Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
                 label.setBorder(border);
-                if (i != crossingManager.getRoadCrossingPosition() && j != crossingManager.getRoadCrossingPosition()) {
+                if (i != crossingManager.getRoadCrossingIndex() && j != crossingManager.getRoadCrossingIndex()) {
                     label.setVisible(false);
                 }
                 frame.getContentPane().add(label, c);
                 labels.add(label);
             }
         }
-        JLabel label = labels.get((crossingManager.getRoadCrossingPosition() - 1) * crossingManager.getCrossing().getRoadLength() + (crossingManager.getRoadCrossingPosition() - 1));
+        JLabel label = labels.get((crossingManager.getRoadCrossingIndex() - 1) * crossingManager.getCrossing().getRoadLength() + (crossingManager.getRoadCrossingIndex() - 1));
         label.setVisible(true);
         label.setText("\u21E9");
         label.setOpaque(true);
         label.setBackground(Color.RED);
-        label = labels.get((crossingManager.getRoadCrossingPosition() + 1) * crossingManager.getCrossing().getRoadLength() + (crossingManager.getRoadCrossingPosition() - 1));
+        label = labels.get((crossingManager.getRoadCrossingIndex() + 1) * crossingManager.getCrossing().getRoadLength() + (crossingManager.getRoadCrossingIndex() - 1));
         label.setVisible(true);
         label.setText("\u21E8");
         label.setOpaque(true);
@@ -52,9 +51,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        RoadCrossingManager manager = new RoadCrossingManager(false);
+        RoadCrossingManager manager = new RoadCrossingManager();
         System.out.println("Road Length : " + manager.getCrossing().getRoadLength());
-        System.out.println("Road Crossing Position : " + manager.getRoadCrossingPosition());
+        System.out.println("Road Crossing Position : " + manager.getRoadCrossingIndex());
 
 
 

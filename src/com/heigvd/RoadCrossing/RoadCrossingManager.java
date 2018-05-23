@@ -7,12 +7,10 @@ import com.heigvd.PetriNetManager.PetriNetManager;
  */
 public class RoadCrossingManager {
     private static final boolean debug = true;
-    private boolean petriNetTimer;
     private PetriNetManager petriNetManager;
     private RoadCrossing crossing;
     private static final int roadCrossingSegmentLength = 10;
     private static final int detectedRoadCrossingSegmentLength = 1;
-    private int roadCrossingPosition;
     private RoadSignal northSouthSignal;
     private RoadSignal westEastSignal;
     private RoadCrossingDetector detectorBeforeCrossingNS;
@@ -20,33 +18,35 @@ public class RoadCrossingManager {
     private RoadCrossingDetector detectorInCrossingNS;
     private RoadCrossingDetector detectorInCrossingWE;
 
-    public RoadCrossingManager(boolean petriNetTimer) {
-        this.petriNetTimer = petriNetTimer;
+    /**
+     * Create a new instance of the RoadCrossingManager
+     */
+    public RoadCrossingManager() {
         /* Create Petri Net Manager and load it */
         this.petriNetManager = new PetriNetManager();
+        /* TODO Get config file from resources + xml if possible */
         petriNetManager.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/roadCrossingRDP.cfg");
         /* Create the crossing */
         crossing = new RoadCrossing(this.roadCrossingSegmentLength);
-        roadCrossingPosition = this.roadCrossingSegmentLength;
         /* Create the signals */
-        northSouthSignal = new RoadSignal("NorthSouthSignal", roadCrossingPosition - 1);
-        westEastSignal = new RoadSignal("WestEastSignal", roadCrossingPosition - 1);
+        northSouthSignal = new RoadSignal("NorthSouthSignal", this.crossing.getRoadCrossingIndex() - 1);
+        westEastSignal = new RoadSignal("WestEastSignal", this.crossing.getRoadCrossingIndex() - 1);
         /* Create the detectors */
         detectorBeforeCrossingNS = new RoadCrossingDetector(this, this.getCrossing().getNorthSouthRoad(), this.roadCrossingSegmentLength - this.detectedRoadCrossingSegmentLength, this.detectedRoadCrossingSegmentLength, "ALaneFilled", true);
         detectorBeforeCrossingWE = new RoadCrossingDetector(this, this.getCrossing().getWestEastRoad(), this.roadCrossingSegmentLength - this.detectedRoadCrossingSegmentLength, this.detectedRoadCrossingSegmentLength, "BLaneFilled", true);
-        detectorInCrossingNS = new RoadCrossingDetector(this, this.getCrossing().getNorthSouthRoad(), this.roadCrossingPosition, 1, "CrossingEmptyA", false);
-        detectorInCrossingWE = new RoadCrossingDetector(this, this.getCrossing().getWestEastRoad(), this.roadCrossingPosition, 1, "CrossingEmptyB", false);
+        detectorInCrossingNS = new RoadCrossingDetector(this, this.getCrossing().getNorthSouthRoad(), this.crossing.getRoadCrossingIndex(), 1, "CrossingEmptyA", false);
+        detectorInCrossingWE = new RoadCrossingDetector(this, this.getCrossing().getWestEastRoad(), this.crossing.getRoadCrossingIndex(), 1, "CrossingEmptyB", false);
         /* Create the signal actions which are triggered when certain places are reached */
-        SignalStateAction NSSignalGreenAction = new SignalStateAction(this.northSouthSignal, true, null);
+        SignalStateAction NSSignalGreenAction = new SignalStateAction(this.northSouthSignal, true);
         NSSignalGreenAction.setDebug(this.debug);
         this.petriNetManager.setPlaceAction("GreenA", NSSignalGreenAction);
-        SignalStateAction NSSignalRedAction = new SignalStateAction(this.northSouthSignal, false, null);
+        SignalStateAction NSSignalRedAction = new SignalStateAction(this.northSouthSignal, false);
         NSSignalRedAction.setDebug(this.debug);
         this.petriNetManager.setPlaceAction("RedA", NSSignalRedAction);
-        SignalStateAction WESignalGreenAction = new SignalStateAction(this.westEastSignal, true, null);
+        SignalStateAction WESignalGreenAction = new SignalStateAction(this.westEastSignal, true);
         WESignalGreenAction.setDebug(this.debug);
         this.petriNetManager.setPlaceAction("GreenB", WESignalGreenAction);
-        SignalStateAction WESignalRedAction = new SignalStateAction(this.westEastSignal, false, null);
+        SignalStateAction WESignalRedAction = new SignalStateAction(this.westEastSignal, false);
         WESignalRedAction.setDebug(this.debug);
         this.petriNetManager.setPlaceAction("RedB", WESignalRedAction);
         /* Create vehicle creator */
@@ -71,39 +71,53 @@ public class RoadCrossingManager {
         detectorInCrossingWE.setDebug(this.debug);
         creatorNS.start();
         creatorWE.start();
-
-        if (petriNetTimer) {
-            /* TODO Create RDP Timer */
-        }
     }
 
+    /**
+     * Returns the instance of the PetriNetManager
+     * @return PetriNetManager instance
+     */
     public PetriNetManager getPetriNetManager() {
         return petriNetManager;
     }
 
-    public void setPetriNetManager(PetriNetManager petriNetManager) {
-        this.petriNetManager = petriNetManager;
-    }
-
+    /**
+     * Returns the RoadCrossing instance
+     * @return RoadCrossing instance
+     */
     public RoadCrossing getCrossing() {
         return crossing;
     }
 
-    public void setCrossing(RoadCrossing crossing) {
-        this.crossing = crossing;
-    }
-
+    /**
+     * Returns the RoadSignal on the NorthSouth road
+     * @return RoadSignal instance
+     */
     public RoadSignal getNorthSouthSignal() {
         return northSouthSignal;
     }
 
+    /**
+     * Returns the RoadSignal on the WestEast road
+     * @return RoadSignal instance
+     */
     public RoadSignal getWestEastSignal() {
         return westEastSignal;
     }
 
-    public int getRoadCrossingPosition() {
-        return roadCrossingPosition;
+    public RoadCrossingDetector getDetectorBeforeCrossingNS() {
+        return detectorBeforeCrossingNS;
     }
 
+    public RoadCrossingDetector getDetectorBeforeCrossingWE() {
+        return detectorBeforeCrossingWE;
+    }
 
+    public RoadCrossingDetector getDetectorInCrossingWE() {
+        return detectorInCrossingWE;
+    }
+
+    public RoadCrossingDetector getDetectorInCrossingNS() {
+        return detectorInCrossingNS;
+    }
 }

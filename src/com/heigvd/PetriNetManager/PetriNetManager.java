@@ -74,6 +74,7 @@ public class PetriNetManager extends Thread {
         enabledTransitions = new Vector<>();
         firedTransitions = new Vector<>();
         eventList = new ArrayList<>();
+        setDaemon(true);
     }
 
     /**
@@ -310,18 +311,12 @@ public class PetriNetManager extends Thread {
      */
     private boolean TransitionEventHappened(String transitionName) {
         return transitions.get(findTransitionIndex(transitionName)).isFired();
-        /*if (eventList.contains(transitions.get(findTransitionIndex(transitionName)).getName())) {
-            eventList.remove(transitions.get(findTransitionIndex(transitionName)).getName());
-            return true;
-        } else {
-            return false;
-        }*/
     }
 
-    public boolean isDebug() {
-        return debug;
-    }
-
+    /**
+     * Set debug mode
+     * @param debug true = debug mode on, false = debug mode off
+     */
     public void setDebug(boolean debug) {
         this.debug = debug;
     }

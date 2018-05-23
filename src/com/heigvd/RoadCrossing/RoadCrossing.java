@@ -6,6 +6,19 @@ package com.heigvd.RoadCrossing;
 public class RoadCrossing {
     private boolean[] northSouthRoad;
     private boolean[] westEastRoad;
+    private int roadCrossingIndex;
+
+    /**
+     * Creates a new road crossing
+     * @param roadLengthBeforeCrossing Length of the roads before and after the crossing
+     */
+    public RoadCrossing(int roadLengthBeforeCrossing) {
+        northSouthRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
+        westEastRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
+        initRoad(northSouthRoad);
+        initRoad(westEastRoad);
+        roadCrossingIndex = roadLengthBeforeCrossing;
+    }
 
     /**
      * Initialize a road
@@ -18,18 +31,11 @@ public class RoadCrossing {
     }
 
     /**
-     * Creates a new road crossing
-     * @param roadLength Length of the roads
+     * Returns the index of the crossing
+     * @return Road crossing index
      */
-    /**
-     * Creates a new road crossing
-     * @param roadLengthBeforeCrossing Length of the roads before and after the crossing
-     */
-    public RoadCrossing(int roadLengthBeforeCrossing) {
-        northSouthRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
-        westEastRoad = new boolean[2 * roadLengthBeforeCrossing + 1];
-        initRoad(northSouthRoad);
-        initRoad(westEastRoad);
+    public int getRoadCrossingIndex() {
+        return roadCrossingIndex;
     }
 
     /**

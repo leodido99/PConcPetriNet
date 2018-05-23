@@ -12,7 +12,7 @@ public class RoadCrossingDetector extends Thread {
     private int nbSlotsToCheck;
     private boolean positionExpectedState;
     private boolean debug;
-    private boolean previousState;
+    private boolean lastState;
 
     /**
      * Create a new Road Crossing Detector
@@ -31,7 +31,7 @@ public class RoadCrossingDetector extends Thread {
         this.nbSlotsToCheck = nbPositionToCheck;
         this.positionExpectedState = positionExpectedState;
         this.transitionToFire = transitionToFire;
-        this.previousState = false;
+        this.lastState = false;
     }
 
     /**
@@ -55,16 +55,16 @@ public class RoadCrossingDetector extends Thread {
         while(true) {
             if (isState()) {
                 roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, true);
-                if (this.debug && this.previousState != true) {
+                if (this.debug && this.lastState != true) {
                     System.out.println(this.getName() + " - Event " + this.transitionToFire + " true");
                 }
-                this.previousState = true;
+                this.lastState = true;
             } else {
                 roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, false);
-                if (this.debug && this.previousState != false) {
+                if (this.debug && this.lastState != false) {
                     System.out.println(this.getName() + " - Event " + this.transitionToFire + " false");
                 }
-                this.previousState = false;
+                this.lastState = false;
             }
             try {
                 Thread.sleep(500);
@@ -80,5 +80,13 @@ public class RoadCrossingDetector extends Thread {
      */
     public void setDebug(boolean debug) {
         this.debug = debug;
+    }
+
+    /**
+     * Return the last state of the detector
+     * @return true = condition was met, false = condition was not met
+     */
+    public boolean isLastState() {
+        return lastState;
     }
 }
