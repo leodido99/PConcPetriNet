@@ -83,7 +83,7 @@ public class Vehicle extends Thread {
                         System.out.println("Vehicle " + this.ID + " was in an accident");
                         throw new RuntimeException();
                     }
-                    if (debug && this.crossingManager.getRoadCrossingIndex() == this.crossingPosition) {
+                    if (debug && this.crossingManager.getCrossing().getRoadCrossingIndex() == this.crossingPosition) {
                         System.out.println("Vehicle " + this.ID + " entered the crossing");
                     }
                 }

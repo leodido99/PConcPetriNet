@@ -43,5 +43,7 @@ public class ThreadEND {
                 e.printStackTrace();
             }
         }
+        /* Trigger Petri Net Event */
+        petriNetManagerTimer.setEventState("EmptyCrossings", true);
     }
 }
