@@ -1,22 +1,17 @@
 package com.heigvd.Timer;
 
-import com.heigvd.PetriNetManager.PetriNetManager;
-import com.heigvd.RoadCrossing.RoadCrossingManager;
-
 /**
  * Created by leonard.bise on 23.05.18.
  */
-public class ThreadEND {
-    private RoadCrossingManager crossingManager;
-    private PetriNetManager petriNetManagerTimer;
+public class ThreadEND extends Thread {
+    private TimerManager timerManager;
 
     /**
      * Create a new ThreadEND
-     * @param crossingManager Instance of the RoadCrossingManager
+     * @param timerManager Instance of TimerManager
      */
-    public ThreadEND(PetriNetManager petriNetManagerTimer, RoadCrossingManager crossingManager) {
-        this.crossingManager = crossingManager;
-        this.petriNetManagerTimer = petriNetManagerTimer;
+    public ThreadEND(TimerManager timerManager) {
+        this.timerManager = timerManager;
     }
 
     /**
@@ -25,8 +20,8 @@ public class ThreadEND {
      */
     public boolean evaluateCondition() {
         /* Check if both of the crossings are empty */
-        if (crossingManager.getDetectorInCrossingNS().isLastState() == true
-                && crossingManager.getDetectorInCrossingWE().isLastState() == true) {
+        if (timerManager.getCrossingManager().getDetectorInCrossingNS().isLastState() == true
+                && timerManager.getCrossingManager().getDetectorInCrossingWE().isLastState() == true) {
             return true;
         }
         return false;
@@ -44,6 +39,8 @@ public class ThreadEND {
             }
         }
         /* Trigger Petri Net Event */
-        petriNetManagerTimer.setEventState("EmptyCrossings", true);
+        timerManager.getTimerPetriNetManager().setEventState("EmptyCrossings", true);
+        /* Trigger RoadCrossing Event */
+        this.timerManager.setRoadCrossingTransition(true);
     }
 }

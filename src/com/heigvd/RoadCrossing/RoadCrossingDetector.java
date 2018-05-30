@@ -48,19 +48,29 @@ public class RoadCrossingDetector extends Thread {
     }
 
     /**
+     * Sets the RDP transition if one is set
+     * @param state State of transition
+     */
+    private void setTransition(boolean state) {
+        if (!this.transitionToFire.isEmpty()) {
+            roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, state);
+        }
+    }
+
+    /**
      * Job of the Thread
      * Periodically checks the crossing and updates the event state
      */
     public void run() {
         while(true) {
             if (isState()) {
-                roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, true);
+                setTransition(true);
                 if (this.debug && this.lastState != true) {
                     System.out.println(this.getName() + " - Event " + this.transitionToFire + " true");
                 }
                 this.lastState = true;
             } else {
-                roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, false);
+                setTransition(false);
                 if (this.debug && this.lastState != false) {
                     System.out.println(this.getName() + " - Event " + this.transitionToFire + " false");
                 }

@@ -1,6 +1,7 @@
 package com.heigvd.Timer;
 
 import com.heigvd.PetriNetManager.PetriNetManager;
+import com.heigvd.RoadCrossing.RoadCrossingManager;
 
 /**
  * Created by leonard.bise on 23.05.18.
@@ -8,20 +9,40 @@ import com.heigvd.PetriNetManager.PetriNetManager;
 public class TimerManager {
     private PetriNetManager timerPetriNetManager;
     private PetriNetManager roadCrossingPetriNetManager;
+    private RoadCrossingManager crossingManager;
+    private TimerAction timerAction;
 
-    public TimerManager(PetriNetManager roadCrossingPetriNetManager) {
+    public TimerManager(PetriNetManager roadCrossingPetriNetManager, RoadCrossingManager crossingManager) {
+        this.crossingManager = crossingManager;
+        /* Create and setup petri net manager */
         timerPetriNetManager = new PetriNetManager();
         /* TODO Get config file from resources + xml if possible */
         timerPetriNetManager.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/TimerRDP.cfg");
         this.roadCrossingPetriNetManager = roadCrossingPetriNetManager;
-
-
-
-
-
-
+        /* Create and setup actions */
+        timerAction = new TimerAction(this);
+        timerAction.setDebug(true);
+        timerPetriNetManager.setPlaceAction("OFF", timerAction);
+        timerPetriNetManager.setPlaceAction("ON", timerAction);
+        timerPetriNetManager.setPlaceAction("END", timerAction);
         /* Start petri net manager*/
         timerPetriNetManager.start();
     }
 
+    public void setRoadCrossingTransition(boolean state) {
+        this.roadCrossingPetriNetManager.setEventState("ALaneFilled", state);
+        this.roadCrossingPetriNetManager.setEventState("BLaneFilled", state);
+    }
+
+    public PetriNetManager getTimerPetriNetManager() {
+        return timerPetriNetManager;
+    }
+
+    public PetriNetManager getRoadCrossingPetriNetManager() {
+        return roadCrossingPetriNetManager;
+    }
+
+    public RoadCrossingManager getCrossingManager() {
+        return crossingManager;
+    }
 }

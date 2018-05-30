@@ -1,8 +1,5 @@
 package com.heigvd.Timer;
 
-import com.heigvd.PetriNetManager.PetriNetManager;
-import com.heigvd.RoadCrossing.RoadCrossingManager;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,18 +10,16 @@ public class ThreadON extends Thread {
     private final int timerDuration = 20;
     private Timer timer;
     private RemindTask timerTask;
-    private RoadCrossingManager crossingManager;
-    private PetriNetManager petriNetManagerTimer;
+    private TimerManager timerManager;
 
     /**
      * Create a new ThreadON
-     * @param crossingManager Instance of the RoadCrossingManager
+     * @param timerManager Instance of TimerManager
      */
-    public ThreadON(PetriNetManager petriNetManagerTimer, RoadCrossingManager crossingManager, Timer timer) {
-        this.crossingManager = crossingManager;
-        this.timer = timer;
-        this.petriNetManagerTimer = petriNetManagerTimer;
+    public ThreadON(TimerManager timerManager) {
+        this.timerManager = timerManager;
         this.startTimer(this.timerDuration);
+        this.timer = new Timer();
     }
 
     /**
@@ -52,7 +47,6 @@ public class ThreadON extends Thread {
      * @param seconds Time in seconds
      */
     public void startTimer(int seconds) {
-        timer = new Timer();
         this.timerTask = new RemindTask();
         timer.schedule(this.timerTask, seconds*1000);
     }
@@ -64,8 +58,8 @@ public class ThreadON extends Thread {
     public boolean evaluateCondition() {
         /* Check if (Time elapsed OR (Signal A is green AND no more cars in lane A) OR (Signal B is green AND no more cars in lane B) */
         if (this.timerTask.isTimerElapsed() ||
-                (this.crossingManager.getNorthSouthSignal().isGreen() && !this.crossingManager.getDetectorBeforeCrossingNS().isLastState()) ||
-                (this.crossingManager.getWestEastSignal().isGreen() && !this.crossingManager.getDetectorBeforeCrossingWE().isLastState())) {
+                (timerManager.getCrossingManager().getNorthSouthSignal().isGreen() && !timerManager.getCrossingManager().getDetectorBeforeCrossingNS().isLastState()) ||
+                (timerManager.getCrossingManager().getWestEastSignal().isGreen() && !timerManager.getCrossingManager().getDetectorBeforeCrossingWE().isLastState())) {
             return true;
         }
         return false;
@@ -83,6 +77,6 @@ public class ThreadON extends Thread {
             }
         }
         /* Trigger Petri Net Event */
-        petriNetManagerTimer.setEventState("ChangeSignalEnd", true);
+        timerManager.getTimerPetriNetManager().setEventState("ChangeSignalEnd", true);
     }
 }

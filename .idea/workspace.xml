@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be381590-f6aa-4627-8f95-e8095cdfba7e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/RoadCrossing/RoadCrossingGUIThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PConcPetriNet/com/heigvd/RoadCrossing/Vehicle.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Main.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/TimerAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManagerTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ActionOFF.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ActionON.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" afterPath="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java" afterPath="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,12 +28,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RoadCrossingDetector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
+      <file leaf-file-name="RoadCrossingManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="733">
-              <caret line="86" column="70" lean-forward="false" selection-start-line="86" selection-start-column="70" selection-end-line="86" selection-end-column="70" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="34" column="231" lean-forward="false" selection-start-line="34" selection-start-column="220" selection-end-line="34" selection-end-column="231" />
+              <folding>
+                <element signature="e#5438#5439#0" expanded="true" />
+                <element signature="e#5481#5482#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,18 +44,26 @@
       <file leaf-file-name="TimerManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="210">
+              <caret line="14" column="104" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="104" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1626#1627#0" expanded="true" />
+                <element signature="e#1689#1690#0" expanded="true" />
+                <element signature="e#1739#1740#0" expanded="true" />
+                <element signature="e#1794#1795#0" expanded="true" />
+                <element signature="e#1832#1833#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreadOFF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java">
+      <file leaf-file-name="TimerManagerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="510">
+              <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,21 +71,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vehicle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
+      <file leaf-file-name="RoadCrossing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="85" column="67" lean-forward="false" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+            <state relative-caret-position="120">
+              <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
+      <file leaf-file-name="PetriNetManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+            <state relative-caret-position="199">
+              <caret line="141" column="4" lean-forward="false" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,41 +96,12 @@
       <file leaf-file-name="ThreadEND.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="409">
+              <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionEND.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionOFF.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionOFF.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionON.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionON.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -127,8 +112,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -140,6 +125,7 @@
       <find>triggerCarExitCrossing</find>
       <find>acci</find>
       <find>eventList</find>
+      <find>start</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,17 +164,21 @@
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java" />
         <option value="$PROJECT_DIR$/config/TimerRDP.cfg" />
         <option value="$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingManager.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java" />
-        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/Main.java" />
         <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ActionOFF.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ActionON.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/TimerAction.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java" />
+        <option value="$PROJECT_DIR$/src/com/heigvd/Timer/TimerManagerTest.java" />
       </list>
     </option>
   </component>
@@ -343,6 +333,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.heigvd.Timer" />
       <recent name="com.heigvd.PetriNetManager" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -784,7 +775,7 @@
       <workItem from="1526192057502" duration="12804000" />
       <workItem from="1526491775723" duration="7938000" />
       <workItem from="1527089265934" duration="9844000" />
-      <workItem from="1527700702507" duration="2923000" />
+      <workItem from="1527700702507" duration="8006000" />
     </task>
     <servers />
   </component>
@@ -821,7 +812,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103432000" />
+    <option name="totallyTimeSpent" value="108515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -884,17 +875,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="e#261#262#0" expanded="false" />
-            <element signature="e#293#294#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriArcType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1095,149 +1075,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadSignalTimerAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="18" column="70" lean-forward="true" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="50" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="335" column="69" lean-forward="false" selection-start-line="335" selection-start-column="69" selection-end-line="335" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding>
-            <element signature="e#1035#1036#0" expanded="true" />
-            <element signature="e#1075#1076#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="121" column="5" lean-forward="false" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
-          <folding>
-            <element signature="e#5114#5115#0" expanded="true" />
-            <element signature="e#5161#5162#0" expanded="true" />
-            <element signature="e#5226#5227#0" expanded="true" />
-            <element signature="e#5273#5274#0" expanded="true" />
-            <element signature="e#5334#5335#0" expanded="true" />
-            <element signature="e#5377#5378#0" expanded="true" />
-            <element signature="e#5438#5439#0" expanded="true" />
-            <element signature="e#5481#5482#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="84" column="8" lean-forward="false" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1064#1065#0" expanded="true" />
-            <element signature="e#1107#1108#0" expanded="true" />
-            <element signature="e#1168#1169#0" expanded="true" />
-            <element signature="e#1224#1225#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/TimerRDP.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionOFF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="86" column="70" lean-forward="false" selection-start-line="86" selection-start-column="70" selection-end-line="86" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="85" column="67" lean-forward="false" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingGUIThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1246,10 +1083,164 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/Vehicle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="85" column="67" lean-forward="false" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/heigvd/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="55" column="78" lean-forward="false" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/TimerRDP.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionEND.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ActionOFF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/roadCrossingRDP.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/SignalStateAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="18" column="70" lean-forward="true" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadOFF.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1633#1634#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/ThreadEND.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="37" column="36" lean-forward="true" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <folding>
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="34" column="231" lean-forward="false" selection-start-line="34" selection-start-column="220" selection-end-line="34" selection-end-column="231" />
+          <folding>
+            <element signature="e#5438#5439#0" expanded="true" />
+            <element signature="e#5481#5482#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="104" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="104" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
+            <element signature="e#1689#1690#0" expanded="true" />
+            <element signature="e#1739#1740#0" expanded="true" />
+            <element signature="e#1794#1795#0" expanded="true" />
+            <element signature="e#1832#1833#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/PetriNetManager/PetriNetManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="141" column="4" lean-forward="false" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/RoadCrossing/RoadCrossing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heigvd/Timer/TimerManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
