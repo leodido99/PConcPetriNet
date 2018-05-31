@@ -610,8 +610,10 @@ public class PetriNetManager extends Thread {
         String line = null;
 
         try {
+            File txtFile = new File(getClass().getClassLoader().getResource(fileName).getFile());
+
             // FileReader reads text files in the default encoding.
-            FileReader fileReader = new FileReader(fileName);
+            FileReader fileReader = new FileReader(txtFile);
 
             // Always wrap FileReader in BufferedReader.
             BufferedReader bufferedReader = new BufferedReader(fileReader);

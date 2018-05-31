@@ -25,7 +25,7 @@ public class RoadCrossingManager {
         /* Create Petri Net Manager and load it */
         this.petriNetManager = new PetriNetManager();
         /* TODO Get config file from resources + xml if possible */
-        petriNetManager.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/roadCrossingRDP.cfg");
+        petriNetManager.loadFromTextFile("com/heigvd/config/roadCrossingRDP.cfg");
         /* Create the crossing */
         crossing = new RoadCrossing(this.roadCrossingSegmentLength);
         /* Create the signals */
