@@ -136,6 +136,21 @@ public class PetriNetManager extends Thread {
         executePhase3();
     }
 
+    public void printMarkingPost() {
+        System.out.println("---------------------------");
+        System.out.println("Marking Post:");
+        String line1 = "", line2 = "";
+        for(int j = 0; j < markingPost.length; j++) {
+            line1 += String.format("%10s ", this.places.get(j).getName());
+            line2 += String.format("%10s ", markingPost[j]);
+            //System.out.print(markingPost[j] + " ");
+        }
+        System.out.println(line1);
+        System.out.println(line2);
+        System.out.println();
+        System.out.println("---------------------------");
+    }
+
     /**
      * The RDP engine
      */
@@ -145,13 +160,7 @@ public class PetriNetManager extends Thread {
             waitTick();
             this.step();
             if (this.debug) {
-                System.out.println("---------------------------");
-                System.out.println("Marking Post:");
-                for(int j = 0; j < markingPost.length; j++) {
-                    System.out.print(markingPost[j] + " ");
-                }
-                System.out.println();
-                System.out.println("---------------------------");
+                printMarkingPost();
             }
         }
     }
@@ -604,6 +613,7 @@ public class PetriNetManager extends Thread {
     public void loadFromTextFile(String fileName) {
         int phase = 0;
 
+        printDebug("---------------------------------------------------------");
         printDebug("Loading Petri Net from " + fileName);
 
         // This will reference one line at a time
@@ -673,5 +683,7 @@ public class PetriNetManager extends Thread {
                     "Error reading file '"
                             + fileName + "'");
         }
+        printDebug("Finished loading " + fileName);
+        printDebug("---------------------------------------------------------");
     }
 }

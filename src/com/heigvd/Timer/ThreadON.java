@@ -18,8 +18,8 @@ public class ThreadON extends Thread {
      */
     public ThreadON(TimerManager timerManager) {
         this.timerManager = timerManager;
-        this.startTimer(this.timerDuration);
         this.timer = new Timer();
+        this.startTimer(this.timerDuration);
     }
 
     /**

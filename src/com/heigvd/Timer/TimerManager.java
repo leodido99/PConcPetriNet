@@ -16,8 +16,8 @@ public class TimerManager {
         this.crossingManager = crossingManager;
         /* Create and setup petri net manager */
         timerPetriNetManager = new PetriNetManager();
-        /* TODO Get config file from resources + xml if possible */
-        timerPetriNetManager.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/TimerRDP.cfg");
+        /* TODO xml */
+        timerPetriNetManager.loadFromTextFile("com/heigvd/config/TimerRDP.cfg");
         this.roadCrossingPetriNetManager = roadCrossingPetriNetManager;
         /* Create and setup actions */
         timerAction = new TimerAction(this);
@@ -25,8 +25,6 @@ public class TimerManager {
         timerPetriNetManager.setPlaceAction("OFF", timerAction);
         timerPetriNetManager.setPlaceAction("ON", timerAction);
         timerPetriNetManager.setPlaceAction("END", timerAction);
-        /* Start petri net manager*/
-        timerPetriNetManager.start();
     }
 
     public void setRoadCrossingTransition(boolean state) {
@@ -44,5 +42,10 @@ public class TimerManager {
 
     public RoadCrossingManager getCrossingManager() {
         return crossingManager;
+    }
+
+    public void start() {
+        /* Start petri net manager*/
+        timerPetriNetManager.start();
     }
 }

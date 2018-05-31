@@ -1,6 +1,7 @@
 package com.heigvd;
 
 import com.heigvd.RoadCrossing.*;
+import com.heigvd.Timer.TimerManager;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -54,8 +55,11 @@ public class Main {
         RoadCrossingManager manager = new RoadCrossingManager();
         System.out.println("Road Length : " + manager.getCrossing().getRoadLength());
         System.out.println("Road Crossing Position : " + manager.getCrossing().getRoadCrossingIndex());
+        /* Timer RDP */
+        TimerManager timerManager = new TimerManager(manager.getPetriNetManagerRoadCrossing(), manager);
 
-
+        manager.start();
+        timerManager.start();
 
 //        PetriNetManager petriNet = new PetriNetManager();
 //        petriNet.loadFromTextFile("/Users/leonard.bise/gitrepo/PConcPetriNet/config/roadCrossingRDP.cfg");

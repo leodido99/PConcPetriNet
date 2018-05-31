@@ -16,6 +16,13 @@ public class RoadCrossingDetector extends Thread {
 
     /**
      * Create a new Road Crossing Detector
+     */
+    public RoadCrossingDetector() {
+
+    }
+
+    /**
+     * Create a new Road Crossing Detector
      * @param roadCrossingManager Road Crossing Manager
      * @param road The road to check
      * @param detectorPosition The position of the detector on the road
@@ -53,7 +60,7 @@ public class RoadCrossingDetector extends Thread {
      */
     private void setTransition(boolean state) {
         if (!this.transitionToFire.isEmpty()) {
-            roadCrossingManager.getPetriNetManager().setEventState(this.transitionToFire, state);
+            roadCrossingManager.getPetriNetManagerRoadCrossing().setEventState(this.transitionToFire, state);
         }
     }
 

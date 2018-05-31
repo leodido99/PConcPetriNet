@@ -24,13 +24,13 @@ public class TimerAction implements PetriPlaceInterface {
      */
     public void execute(PetriPlace place) {
         Thread myThread;
-        if (place.getName() == "ON") {
+        if (place.getName().contentEquals("ON")) {
             /* Create and start the Thread that checks the specific condition */
             myThread = new ThreadON(this.timerManager);
-        } else if (place.getName() == "OFF") {
+        } else if (place.getName().contentEquals("OFF")) {
             /* Create and start the Thread that checks the specific condition */
             myThread = new ThreadOFF(this.timerManager);
-        } else if (place.getName() == "END") {
+        } else if (place.getName().contentEquals("END")) {
             /* Create and start the Thread that checks the specific condition */
             myThread = new ThreadEND(this.timerManager);
         } else {
