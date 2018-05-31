@@ -1,6 +1,6 @@
 package com.heigvd.RoadCrossing;
 
-import com.heigvd.PetriNetManager.PetriNetManager;
+import com.heigvd.Tools.RandomNumber;
 
 /**
  * Created by leonard.bise on 09.05.18.
@@ -19,17 +19,17 @@ public class VehicleCreator extends Thread {
         this.crossingManager = crossingManager;
     }
 
-    public boolean isDebug() {
-        return debug;
-    }
-
+    /**
+     * Set debug mode
+     * @param debug debug mode
+     */
     public void setDebug(boolean debug) {
         this.debug = debug;
     }
 
     /**
-     *
-     * @return
+     * Returns if it is possible to create a vehicle
+     * @return true = possible to create new vehicle
      */
     private boolean canCreateVehicle() {
         if (this.crossingManager.getCrossing().getPosition(this.northSouth, 0)) {
@@ -43,9 +43,9 @@ public class VehicleCreator extends Thread {
      */
     public void run() {
         while(true) {
-            /* Sleep random amount of time */
             try {
-                Thread.sleep((long) (Math.random()*10000));
+                /* Sleep random amount of time */
+                Thread.sleep(RandomNumber.randomNumberInRange(0, 5000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -53,7 +53,7 @@ public class VehicleCreator extends Thread {
             if (canCreateVehicle()) {
                 vehicleCounter++;
                 /* Create new vehicle */
-                Vehicle myVehicle = new Vehicle(crossingManager, creatorID << 8 | vehicleCounter, 0, northSouth, (Math.random() * 2 + 1) * 1000);
+                Vehicle myVehicle = new Vehicle(crossingManager, creatorID << 8 | vehicleCounter, 0, northSouth, RandomNumber.randomNumberInRange(500, 1000));
                 if (this.debug) {
                     myVehicle.setDebug(true);
                 }

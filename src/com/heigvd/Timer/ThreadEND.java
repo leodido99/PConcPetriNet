@@ -33,7 +33,7 @@ public class ThreadEND extends Thread {
     public void run() {
         while(evaluateCondition() == false) {
             try {
-                Thread.sleep(200);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

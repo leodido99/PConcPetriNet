@@ -21,7 +21,7 @@ public class TimerManager {
         this.roadCrossingPetriNetManager = roadCrossingPetriNetManager;
         /* Create and setup actions */
         timerAction = new TimerAction(this);
-        timerAction.setDebug(true);
+        timerAction.setDebug(false);
         timerPetriNetManager.setPlaceAction("OFF", timerAction);
         timerPetriNetManager.setPlaceAction("ON", timerAction);
         timerPetriNetManager.setPlaceAction("END", timerAction);

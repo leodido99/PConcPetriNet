@@ -13,13 +13,7 @@ public class RoadCrossingDetector extends Thread {
     private boolean positionExpectedState;
     private boolean debug;
     private boolean lastState;
-
-    /**
-     * Create a new Road Crossing Detector
-     */
-    public RoadCrossingDetector() {
-
-    }
+    private DetectorModes mode;
 
     /**
      * Create a new Road Crossing Detector
@@ -39,6 +33,50 @@ public class RoadCrossingDetector extends Thread {
         this.positionExpectedState = positionExpectedState;
         this.transitionToFire = transitionToFire;
         this.lastState = false;
+        this.mode = DetectorModes.ALL_POSITION_STATE;
+    }
+
+    /**
+     * Check if ALL the position are in the expected state
+     * @return true = all position in state, false = not all position in state
+     */
+    private boolean isAllState() {
+        for(int i = 0; i < this.nbSlotsToCheck; i++) {
+            if (road[this.detectorPosition + i] != positionExpectedState) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Check if a single position is in the expected state
+     * @return true = a single position was in state, false = no position in state
+     */
+    private boolean isSingleState() {
+        for(int i = 0; i < this.nbSlotsToCheck; i++) {
+            if (road[this.detectorPosition + i] == positionExpectedState) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the position of the detector
+     * @return Position of the detector
+     */
+    public int getDetectorPosition() {
+        return detectorPosition;
+    }
+
+    /**
+     * Returns the number of position to check
+     * @return Nb position to check
+
+     */
+    public int getNbSlotsToCheck() {
+        return nbSlotsToCheck;
     }
 
     /**
@@ -46,12 +84,14 @@ public class RoadCrossingDetector extends Thread {
      * @return true = all positions are equal to the expected state, false = not all position are as expected
      */
     private boolean isState() {
-        for(int i = 0; i < this.nbSlotsToCheck; i++) {
-            if (road[this.detectorPosition + i] != positionExpectedState) {
-                return false;
-            }
+        if (mode == DetectorModes.ALL_POSITION_STATE) {
+            return isAllState();
+        } else if (mode == DetectorModes.SINGLE_POSITION_STATE) {
+            return isSingleState();
+        } else {
+            throw new RuntimeException("Unknown detector mode");
+
         }
-        return true;
     }
 
     /**
@@ -62,6 +102,28 @@ public class RoadCrossingDetector extends Thread {
         if (!this.transitionToFire.isEmpty()) {
             roadCrossingManager.getPetriNetManagerRoadCrossing().setEventState(this.transitionToFire, state);
         }
+    }
+
+    /**
+     *
+     */
+    public enum DetectorModes {
+        /**
+         * All position must be in the expected state to trigger the detector
+         */
+        ALL_POSITION_STATE,
+        /**
+         * A single position must be in the expected state to trigger the detector
+         */
+        SINGLE_POSITION_STATE
+    }
+
+    /**
+     * Sets the detector mode
+     * @param mode
+     */
+    public void setDetectorMode(DetectorModes mode) {
+        this.mode = mode;
     }
 
     /**

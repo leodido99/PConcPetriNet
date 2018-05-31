@@ -5,7 +5,7 @@ package com.heigvd.RoadCrossing;
  */
 public class Vehicle extends Thread {
     private boolean debug;
-    private Double delay;
+    private int delay;
     private int ID;
     private int crossingPosition;
     private boolean northSouthRoad;
@@ -17,14 +17,14 @@ public class Vehicle extends Thread {
      * @param ID The ID of the vehicle
      * @param crossingPosition The starting position (index) of the vehicle
      * @param northSouthRoad If the vehicle is on the north-south or west-east road
-     * @param delay Delay between each thread iteration
+     * @param delayMs Delay between each thread iteration in ms
      */
-    public Vehicle(RoadCrossingManager crossingManager, int ID, int crossingPosition, boolean northSouthRoad, Double delay) {
+    public Vehicle(RoadCrossingManager crossingManager, int ID, int crossingPosition, boolean northSouthRoad, int delayMs) {
         this.ID = ID;
         this.crossingPosition = crossingPosition;
         this.crossingManager = crossingManager;
         this.northSouthRoad = northSouthRoad;
-        this.delay = delay;
+        this.delay = delayMs;
         /* Vehicle enters the crossing */
         this.crossingManager.getCrossing().enter(this.northSouthRoad);
     }
@@ -69,7 +69,9 @@ public class Vehicle extends Thread {
      * Thread content for the vehicle
      */
     public void run() {
-        System.out.println("Vehicle " + this.ID + " created");
+        if (debug) {
+            System.out.println("Vehicle " + this.ID + " created");
+        }
         /* Loop as long as the vehicle is on the road */
         while(crossingPosition < this.crossingManager.getCrossing().getRoadLength() - 1) {
             synchronized (this.crossingManager.getCrossing()) {
@@ -89,13 +91,15 @@ public class Vehicle extends Thread {
                 }
             }
             try {
-                Thread.sleep(this.delay.intValue());
+                Thread.sleep(this.delay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         /* The vehicle leaves the crossing */
         this.crossingManager.getCrossing().leave(this.northSouthRoad);
-        System.out.println("Vehicle " + this.ID + " reached the end of the road");
+        if (debug) {
+            System.out.println("Vehicle " + this.ID + " reached the end of the road");
+        }
     }
 }

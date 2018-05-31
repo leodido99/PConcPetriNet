@@ -6,11 +6,11 @@ import com.heigvd.PetriNetManager.PetriNetManager;
  * Created by leonard.bise on 16.05.18.
  */
 public class RoadCrossingManager {
-    private static final boolean debug = true;
+    private static final boolean debug = false;
     private PetriNetManager petriNetManagerRoadCrossing;
     private RoadCrossing crossing;
     private static final int roadCrossingSegmentLength = 10;
-    private static final int detectedRoadCrossingSegmentLength = 1;
+    private static final int detectedRoadCrossingSegmentLength = 3;
     private RoadSignal northSouthSignal;
     private RoadSignal westEastSignal;
     private RoadCrossingDetector detectorBeforeCrossingNS;
@@ -35,7 +35,9 @@ public class RoadCrossingManager {
         westEastSignal = new RoadSignal("WestEastSignal", this.crossing.getRoadCrossingIndex() - 1);
         /* Create the detectors */
         detectorBeforeCrossingNS = new RoadCrossingDetector(this, this.getCrossing().getNorthSouthRoad(), this.roadCrossingSegmentLength - this.detectedRoadCrossingSegmentLength, this.detectedRoadCrossingSegmentLength, "", true);
+        detectorBeforeCrossingNS.setDetectorMode(RoadCrossingDetector.DetectorModes.SINGLE_POSITION_STATE);
         detectorBeforeCrossingWE = new RoadCrossingDetector(this, this.getCrossing().getWestEastRoad(), this.roadCrossingSegmentLength - this.detectedRoadCrossingSegmentLength, this.detectedRoadCrossingSegmentLength, "", true);
+        detectorBeforeCrossingWE.setDetectorMode(RoadCrossingDetector.DetectorModes.SINGLE_POSITION_STATE);
         detectorInCrossingNS = new RoadCrossingDetector(this, this.getCrossing().getNorthSouthRoad(), this.crossing.getRoadCrossingIndex(), 1, "CrossingEmptyA", false);
         detectorInCrossingWE = new RoadCrossingDetector(this, this.getCrossing().getWestEastRoad(), this.crossing.getRoadCrossingIndex(), 1, "CrossingEmptyB", false);
         /* Create the signal actions which are triggered when certain places are reached */
@@ -112,18 +114,34 @@ public class RoadCrossingManager {
         return westEastSignal;
     }
 
+    /**
+     * Return detector before crossing North-South
+     * @return Detector
+     */
     public RoadCrossingDetector getDetectorBeforeCrossingNS() {
         return detectorBeforeCrossingNS;
     }
 
+    /**
+     * Return detector before crossing West-East
+     * @return Detector
+     */
     public RoadCrossingDetector getDetectorBeforeCrossingWE() {
         return detectorBeforeCrossingWE;
     }
 
+    /**
+     * Return detector in crossing North-South
+     * @return Detector
+     */
     public RoadCrossingDetector getDetectorInCrossingWE() {
         return detectorInCrossingWE;
     }
 
+    /**
+     * Return detector in crossing West-South
+     * @return Detector
+     */
     public RoadCrossingDetector getDetectorInCrossingNS() {
         return detectorInCrossingNS;
     }

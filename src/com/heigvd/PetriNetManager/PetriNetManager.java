@@ -17,7 +17,8 @@ import java.util.Vector;
  * Created by leonard.bise on 18.04.18.
  */
 public class PetriNetManager extends Thread {
-    private boolean debug = true;
+    private boolean debug = false;
+    private final int tickLength = 100;
 
     public ArrayList<String> getEventList() {
         return eventList;
@@ -119,7 +120,11 @@ public class PetriNetManager extends Thread {
      */
     private void waitTick() {
         try {
-            Thread.sleep(1000);
+            int delay = tickLength;
+            if (debug) {
+                Thread.sleep(1000);
+            }
+            Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -7,7 +7,8 @@ import java.util.TimerTask;
  * Created by leonard.bise on 23.05.18.
  */
 public class ThreadON extends Thread {
-    private final int timerDuration = 20;
+    private boolean debug = true;
+    private final int timerDuration = 10;
     private Timer timer;
     private RemindTask timerTask;
     private TimerManager timerManager;
@@ -27,6 +28,7 @@ public class ThreadON extends Thread {
      */
     class RemindTask extends TimerTask {
         private boolean timerElapsed = false;
+        private boolean debug = false;
 
         public boolean isTimerElapsed() {
             return timerElapsed;
@@ -36,8 +38,15 @@ public class ThreadON extends Thread {
             this.timerElapsed = timerElapsed;
         }
 
+        public void setDebug(boolean debug) {
+            this.debug = debug;
+        }
+
         public void run() {
             timerElapsed = true;
+            if (debug) {
+                System.out.println("Timer Elapsed");
+            }
             timer.cancel(); //Terminate the timer thread
         }
     }
@@ -47,7 +56,11 @@ public class ThreadON extends Thread {
      * @param seconds Time in seconds
      */
     public void startTimer(int seconds) {
+        if (debug) {
+            System.out.println("Started timer");
+        }
         this.timerTask = new RemindTask();
+        this.timerTask.setDebug(this.debug);
         timer.schedule(this.timerTask, seconds*1000);
     }
 
@@ -71,12 +84,24 @@ public class ThreadON extends Thread {
     public void run() {
         while(evaluateCondition() == false) {
             try {
-                Thread.sleep(200);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         /* Trigger Petri Net Event */
         timerManager.getTimerPetriNetManager().setEventState("ChangeSignalEnd", true);
+        if (debug) {
+            System.out.println("Thread end");
+        }
+        this.timerTask.cancel();
+    }
+
+    /**
+     * Set debug mode
+     * @param debug debug mode
+     */
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 }
