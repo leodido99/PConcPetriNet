@@ -12,6 +12,7 @@ public class ThreadEND extends Thread {
      */
     public ThreadEND(TimerManager timerManager) {
         this.timerManager = timerManager;
+        setDaemon(true);
     }
 
     /**

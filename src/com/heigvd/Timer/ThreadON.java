@@ -21,6 +21,7 @@ public class ThreadON extends Thread {
         this.timerManager = timerManager;
         this.timer = new Timer();
         this.startTimer(this.timerDuration);
+        setDaemon(true);
     }
 
     /**

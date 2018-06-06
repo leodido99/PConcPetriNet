@@ -13,6 +13,7 @@ public class ThreadOFF extends Thread {
     public ThreadOFF(TimerManager timerManager) {
         this.timerManager = timerManager;
         this.timerManager.setRoadCrossingTransition(false);
+        setDaemon(true);
     }
 
     /**

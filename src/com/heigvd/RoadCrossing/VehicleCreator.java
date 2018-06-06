@@ -6,6 +6,7 @@ import com.heigvd.Tools.RandomNumber;
  * Created by leonard.bise on 09.05.18.
  */
 public class VehicleCreator extends Thread {
+    private boolean enable = true;
     private boolean debug;
     private int creatorID;
     private int vehicleCounter;
@@ -42,7 +43,7 @@ public class VehicleCreator extends Thread {
      * Job of the VehicleCreator
      */
     public void run() {
-        while(true) {
+        while(enable) {
             try {
                 /* Sleep random amount of time */
                 Thread.sleep(RandomNumber.randomNumberInRange(0, 5000));
@@ -61,6 +62,13 @@ public class VehicleCreator extends Thread {
                 myVehicle.start();
             }
         }
+    }
+
+    /**
+     * Kill the thread
+     */
+    public void kill() {
+        this.enable = false;
     }
 
 }

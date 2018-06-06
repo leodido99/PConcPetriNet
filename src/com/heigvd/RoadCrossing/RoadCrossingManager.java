@@ -83,6 +83,14 @@ public class RoadCrossingManager {
     }
 
     /**
+     * Stops the simulation
+     */
+    public void stop() {
+        creatorNS.kill();
+        creatorWE.kill();
+    }
+
+    /**
      * Returns the instance of the PetriNetManager
      * @return PetriNetManager instance
      */
