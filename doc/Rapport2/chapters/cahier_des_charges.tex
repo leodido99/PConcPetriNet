@@ -1,0 +1,22 @@
+\chapter{Cahier des Charges}
+
+Dans le cadre du projet il nous est demandé de créer un projet codé en java comprenant les éléments suivants:
+\begin{itemize}
+\item Créer un gestionnaire de réseau de petri auquel il est possible de donner un fichier de configuration pour créer un paysage (création des places, transition, arcs de pre et post incidence).
+\item Lorsque le réseau de Petri est créé, il est possible de lancer la simulation, à chaque tick le gestionnaire va faire évoluer le réseau de Petri en regardant quelle places sont sensibilisée, il va ensuite consommer et produire des jetons aux places requises.
+\item Lorsqu'un jeton arrive dans une place, si l'utilisateur a lié une action à la place, le gestionnaire va lancer l'exécution de l'action
+\item L'environnement extérieur doit pouvoir informer le gestionnaire du réseau de Petri des événements qui se sont déclenchés, ceci permettra aux transitions d'être franchies lorsqu'elles sont sensibilisées.
+\item Utiliser le gestionnaire de réseau de Pétri afin d'implémenter un réseau qui permet la gestion d'un carrefour avec deux flux perpendiculaire de voiture et qui est à sens unique.
+\item Utiliser le gestionnaire de réseau de Pétri afin d'implémenter un autre réseau qui permet la gestion d'un timer. Ce réseau permettra au réseau de gestion du carrefour de gérer les transitions requises pour le changement d'état des feux de signalisation.
+\end{itemize}
+
+En utilisant le gestionnaire de réseau de Petri, il faudra créer les éléments suivants et les faire interagir avec le réseau pour faire évoluer le système.
+
+\begin{itemize}
+\item Un objet responsable de la gestion des deux routes, il permettra aux véhicules de savoir s'ils peuvent avancer ou si un véhicule se trouve déjà dans la case devant eux. La gestion se fait grâce à deux vecteurs un par flux, le croisement est donc présent dans chacun des deux flux
+\item Deux threads, un par flux, qui créeront à des temps aléatoire de nouveaux véhicules, ils seront créés au début de la route
+\item Un objet véhicule, cet objet, dès sa création, commencera à avancer de case en case en direction de la fin de la route. Lorsqu'il arrivera juste devant le carrefour il vérifiera si le feu est vert avant de pouvoir entrer dans le carrefour. Lorsqu'il atteint la fin de la route il disparait
+\item Deux détecteurs, un par flux, qui auront comme tâche de déclencher un événement lorsqu'ils détecteront un véhicule présent juste avant le croisement
+\item Deux détecteurs, un par flux, qui auront comme tâche de déclencher un événement lorsqu'ils détecteront que le croisement est vide
+\item Deux feu de signalisation, un par flux, qui autoriseront ou non les véhicule du flux à passer dans le croisement
+\end{itemize}

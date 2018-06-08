@@ -1,0 +1,31 @@
+\chapter{Gestion des réseaux de Pétri}
+
+La classe PetriNetManager est la classe centrale du gestionnaire de réseau de Pétri. Après l'instanciation de la classe, un réseau peut être initialisé en utilisant la méthode loadFromTextFile avec un fichier de configuration. Ceci créera toute les places, transitions et arcs requis pour le réseau décrit.
+
+Une fois le réseau initialisé l'utilisateur à la possibilité de faire les actions suivantes:
+\begin{itemize}
+\item Lier une place du réseau avec une classe implémentant l'interface PetriPlaceInterface avec la méthode setPlaceAction. Lorsque le gestionnaire du réseau détecte l'entrée d'un jeton dans la place, il déclenchera automatiquement l'exécution de l'action
+\item Lancer le gestionnaire de réseau de Pétri avec la méthode start. Cette action lancera l'exécution du Thread de PetriNetManager qui après chaque tick effectuera la simulation du réseau
+\item Une fois le gestionnaire lancé, l'utilisateur doit déclencher des événements liés à une certaine transition au moyen de la méthode setEventState ce qui permettra le franchissement de la dite transition si elle est préalablement sensibilisée\\
+\end{itemize}
+
+Le cœur de la simulation du réseau de Pétri est effectuée par la méthode step. Cette méthode simule un pas de  l'évolution du réseau de Pétri, elle est cadencée par la durée d'un tick, c'est à dire un temps entre deux pas.
+
+La liste suivante décrits les opérations effectuées par la méthode step, elle se découpe en quatre phases.
+
+\begin{itemize}
+\item Phase 0 : Les actions des places qui ont eu de nouveaux jetons sont appelées
+\item Phase 1 : Le gestionnaire détermine les transitions qui sont sensibilisées, c'est à dire que les places qui y sont liées contiennent le nombre de jeton requis, et les ajoute dans une liste de transition sensibilisée. La liste est ensuite mélangée pour que les transitions aient un ordre aléatoire
+\item Phase 2 : Pour chaque transition qui sont dans la liste des transitions sensibilisées, le gestionnaire vérifie si l'événement associé a été déclenché, c'est à dire si il est présent dans la queue d'événement. Si c'est le cas, les jetons des places qui sont liées à la transition sont consommés et elle est ajoutée à la liste des transitions franchies. La liste des transitions sensibilisées est à nouveau parcourue pour vérifier si certaines transitions ne le sont plus suite à la consommation de jetons
+\item Phase 3: Les jetons nécessaire sont produit dans les places liées aux transitions qui ont été franchies\\
+\end{itemize}
+
+D'autres classes sont utilisées pour la gestion des réseaux, elles sont décrites ci-dessous.
+
+\begin{itemize}
+\item PetriNetManagerTest: Contient quelques tests du bon fonctionnement du gestionnaire de réseau
+\item PetriArc: Décrit les caractéristiques lié aux arcs de pré et post incidence comme le type (simple, test, inhibit) et leur poids
+\item PetriPlace: Une place dans un réseau de Pétri ainsi que sont action liée si elle en as une
+\item PetriPlaceInterface: Une interface qui permet à la classe qui l'implémente d'être ensuite déclenchée par le gestionnaire de réseau lorsqu'un jeton entre dans la place qui y est liée.
+\item PetriTransition: Contient les informations relative à une transition faisant partie du réseau de Pétri
+\end{itemize}

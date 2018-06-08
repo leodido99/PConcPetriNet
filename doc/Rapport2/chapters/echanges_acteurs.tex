@@ -1,0 +1,26 @@
+\chapter{Echanges entre acteurs}
+
+Le réseau de Pétri est composé de places et de transitions. Afin de pouvoir faire évoluer le réseau de Pétri, des événements relatif au monde réel, c'est à dire à l'état du carrefour, doivent être détectés. Lorsque le réseau est informé du déclenchement d'un événement, il peut alors faire évoluer le réseau en conséquence, c'est à dire de consommer des jetons et d'en produire.
+
+Dans le réseau de Pétri de la gestion du carrefour il existe 4 transitions, voir le fichier config/roadCrossingRDP.cfg qui décrit le réseau de Pétri pour la gestion du carrefour.
+
+\begin{itemize}
+\item CrossingEmptyA: Le carrefour du flux A est vide.
+\item CrossingEmptyB: le carrefour du flux B est vide.
+\item ALaneFilled: Des véhicules sont présent dans le flux A.
+\item BLaneFilled: Des véhicules sont présent dans le flux B.
+\end{itemize}
+
+Lorsqu'un feu est vert, le système vérifie en permanence l'état de l'autre flux afin de savoir quand il devra donner la main à l'autre flux. La vérification de cet état est fait par la classe RoadCrossingDetector, cependant le système ne doit pas donner directement la main à l'autre flux car dans le cas ou beaucoup de véhicules circulent les feux passeraient en permanence du vert au rouge. Pour éviter ce cas de figure, le réseau de Pétri Timer entre en jeu. Ce timer permet d'attendre un certain temps avant de donner la mains à l'autre flux, dans le cas ou le flux qui est actuellement au vert se tarit alors le timer donne la main à l'autre flux immédiatement.
+
+Les événements pour les carrefour vide, c'est à dire CrossingEmptyA et CrossingEmptyB, sont directement déclenché par la classe RoadCrossingDetector.
+
+Les réseaux de Pétri sont informé du déclenchement des événements au travers de la méthode setEventState, qui donne l'état d'un événement du RDP par exemple CrossingEmptyA et son état (true/false). Lorsque l'événement est à true, alors le RDP peut franchir la transition si elle est sensibilisée.
+
+La classe RoadCrossingManager contient toutes les références des instances des objets du système relatif à la gestion du carrefour, une référence à cet objet est passée à tout les acteurs qui ont besoin d'interagir. Par exemple la classe Vehicle, disposera d'une telle référence afin de pouvoir interroger le carrefour pour savoir si il peut avancer ou de savoir l'état du feu de signalisation par exemple. 
+
+De manière similaire une référence de la classe TimerManager sera distribuée aux éléments du timer qui doivent interagir.
+
+Afin d'éviter des problèmes liés aux accès concurrents qui sont effectués sur la classe RoadCrossing par les Vehicle créés durant l'exécution de la simulation, les Vehicle accèdent aux informations de la classe RoadCrossing au travers de bloque de code dit "Synchronized", cela permet de laisser la main au Thread de la classe Vehicle jusqu'à ce que l'entièreté du déplacement à été effectué.
+
+

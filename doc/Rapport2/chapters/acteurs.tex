@@ -1,0 +1,24 @@
+\chapter{Description des acteurs}
+
+Le projet de gestion de carrefour demande la création de différents acteurs qui sont listé ci-dessous.
+
+\begin{itemize}
+\item  RoadCrossingManager: Le gestionnaire du carrefour, c'est cette classe qui créer tout les objets nécessaire et qui permet de les lier. Elle créer et configure le réseau de Pétri au travers de la classe PetriNetManager.
+\item RoadCrossing: La grille sur laquelle les voitures se déplace. Cette classe est passive, elle ne fait que d'être modifié par d'autre classe. Les instance de Vehicle, l'utilise pour savoir si elles peuvent avancer ou si un autre véhicule se trouve déjà devant eux
+\item RoadCrossingDetector: Les détecteurs utilisés pour déclencher des événements dans le réseau de Pétri. Il y'en a deux par flux. Un placé juste avant le carrefour déclenchera l'événement lié à la détection de flux voulant entrer dans le carrefour, cela permet au réseau de Pétri de faire passer le feu de l'autre flux au rouge et ainsi permettre au premier flux de pouvoir passer. Le deuxième type de détecteur vérifiera que le carrefour est bien vide, ce détecteur ne déclenche pas d'événement dans le réseau mais son état est lu régulièrement par le gestionnaire du réseau de Pétri pour le Timer, ce qui permettra de s'assurer que le carrefour est vide avant de mettre le feu du flux stoppé au vert.
+\item RoadSignal: Le feu routier, c'est un élément passif qui ne fait que d'avoir un état, soit rouge ou alors vert. Il y a un feu par flux, les véhicules lorsqu'ils arrivent devant le carrefour doivent veiller à vérifier que le feu est vert avant de pouvoir y rentrer. L'état des feux est modifiés au travers de deux actions du réseau de Pétri.
+\item SignalStateAction : Cette classe implémente l'interface PetriPlaceAction et défini donc l'action à effectuer lorsqu'un feu doit changer d'état. Elle est directement appellé par le gestionnaire de réseau de Petri quand nécessaire et elle contient une réference au feu qu'elle doit gérer.
+\item Vehicle : Définit le comportement d'un véhicule, après avoir été créé il commence à avancer régulièrement le long de son flux en utilisant la grille définie par la classe RoadCrossing. Juste avant de rentrer dans le carrefour la couleur du feu sera vérifiée pour voir si il est possible d'avancer. Lorsqu'elle arrive à la fin de la route, le véhicule a terminé sa vie et est détruit.
+\item VehicleCreator : Ce Thread est responsable de la création de véhicule dans un certain flux de manière régulière
+\item RoadCrossingGUIThread: La tâche qui est responsable de rafraîchir les informations affiché sur l'interface graphique
+\end{itemize}
+
+Le timer définit les acteurs suivant.
+
+\begin{itemize}
+\item TimerManager: Le gestionnaire du timer, c'est cette classe qui créer tout les objets nécessaire et qui permet de les lier. Elle créer et configure le réseau de Pétri au travers de la classe PetriNetManager.
+\item TimerAction: Cette classe est utilisée pour créer les différents Thread qui sont utile pour l'évolution des états du Timer. Les actions sont déclenché par le PetriNetManager lorsque des jetons arrivent dans les places du réseau.
+\item ThreadOFF: Ce Thread vérifie régulièrement si la condition nécessaire pour enclencher le timer est établit. C'est à dire si un des deux flux est au vert et que des véhicules sont détectés dans l'autre flux. Une fois sa tâche remplie, le timer passe en mode ON qui est géré par la classe ThreadON.
+\item ThreadON: Ce Thread déclenche un timer à sa création puis il vérifie si le temps imparti est écoulé. Si le flux qui est au vert se tarit, alors le Thread déclenche l'événement directement ce qui permet de ne pas attendre sans raison. Une fois sa tâche remplie, le timer passe en mode END qui est géré par la classe ThreadEND.
+\item ThreadEND: Le ThreadEND attend que le carrefour soit vide puis il déclenche l'événement permettant au réseau de Pétri du gestionnaire de carrefour de faire basculer le feu au vert du flux en attente. Une fois sa tâche remplie, le timer passe en mode OFF qui est géré par le classe ThreadOFF.
+\end{itemize}
